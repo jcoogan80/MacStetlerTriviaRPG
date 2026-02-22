@@ -26,18 +26,12 @@ body::before {
   z-index:0;
 }
 .wrap { position:relative; z-index:1; width:95%; max-width:760px; }
-
-/* SCREENS */
 .screen { display:none; flex-direction:column; align-items:center; gap:18px; }
 .screen.active { display:flex; }
-
-/* TYPOGRAPHY */
 .logo { font-size:2.6rem; font-weight:900; text-align:center;
   background:linear-gradient(135deg,#f7c948,#ff6b35,#e63946);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 .sub { color:#aaa; font-size:.95rem; text-align:center; }
-
-/* CARDS */
 .card {
   background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.12);
@@ -45,18 +39,11 @@ body::before {
   backdrop-filter:blur(10px);
 }
 .card-title { font-size:1rem; font-weight:700; color:#f7c948; margin-bottom:14px; text-align:center; letter-spacing:1px; text-transform:uppercase; }
-
-/* BUTTONS */
-.btn {
-  padding:14px 36px; border:none; border-radius:50px;
-  font-size:1rem; font-weight:800; cursor:pointer; transition:all .2s;
-}
+.btn { padding:14px 36px; border:none; border-radius:50px; font-size:1rem; font-weight:800; cursor:pointer; transition:all .2s; }
 .btn-gold { background:linear-gradient(135deg,#f7c948,#ff6b35); color:#000; }
 .btn-gold:hover { transform:scale(1.05); box-shadow:0 6px 24px rgba(247,201,72,.4); }
 .btn-outline { background:transparent; border:2px solid rgba(255,255,255,.25); color:#fff; }
 .btn-outline:hover { border-color:#f7c948; background:rgba(247,201,72,.1); }
-
-/* CHARACTER CREATION */
 .name-input {
   width:100%; padding:14px 18px; border-radius:14px;
   background:rgba(255,255,255,.08); border:2px solid rgba(255,255,255,.2);
@@ -65,110 +52,79 @@ body::before {
 }
 .name-input:focus { border-color:#f7c948; }
 .name-input::placeholder { color:#555; }
-
 .sport-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
 .sport-card {
   padding:20px 10px; border-radius:16px; border:2px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.05); cursor:pointer; text-align:center;
-  transition:all .2s;
+  background:rgba(255,255,255,.05); cursor:pointer; text-align:center; transition:all .2s;
 }
-.sport-card:hover,.sport-card.sel {
-  border-color:#f7c948; background:rgba(247,201,72,.12); transform:scale(1.03);
-}
+.sport-card:hover,.sport-card.sel { border-color:#f7c948; background:rgba(247,201,72,.12); transform:scale(1.03); }
 .sport-card .icon { font-size:2.2rem; }
 .sport-card .sname { font-size:.8rem; font-weight:700; margin-top:6px; color:#ddd; }
 .sport-card .sdesc { font-size:.7rem; color:#888; margin-top:3px; line-height:1.3; }
-
 .class-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
 .class-card {
   padding:18px 10px; border-radius:16px; border:2px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.05); cursor:pointer; text-align:center;
-  transition:all .2s;
+  background:rgba(255,255,255,.05); cursor:pointer; text-align:center; transition:all .2s;
 }
-.class-card:hover,.class-card.sel {
-  border-color:#a78bfa; background:rgba(167,139,250,.12); transform:scale(1.03);
-}
+.class-card:hover,.class-card.sel { border-color:#a78bfa; background:rgba(167,139,250,.12); transform:scale(1.03); }
 .class-card .icon { font-size:1.8rem; }
 .class-card .cname { font-size:.85rem; font-weight:700; margin-top:6px; }
 .class-card .cdesc { font-size:.68rem; color:#888; margin-top:3px; line-height:1.3; }
-
-/* HUB SCREEN */
-.hero-panel {
-  display:flex; gap:20px; align-items:flex-start; width:100%;
-}
+.hero-panel { display:flex; gap:20px; align-items:flex-start; width:100%; }
 .avatar-box {
   min-width:110px; text-align:center;
-  background:rgba(255,255,255,.06);
-  border:2px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.06); border:2px solid rgba(255,255,255,.15);
   border-radius:18px; padding:16px 10px;
 }
 .avatar-emoji { font-size:3.4rem; }
-.avatar-name { font-size:.85rem; font-weight:800; color:#f7c948; margin-top:6px; }
+.avatar-name  { font-size:.85rem; font-weight:800; color:#f7c948; margin-top:6px; }
 .avatar-level { font-size:.7rem; color:#888; margin-top:2px; }
 .avatar-class { font-size:.7rem; color:#a78bfa; margin-top:2px; }
-
-.stats-panel { flex:1; display:flex; flex-direction:column; gap:10px; }
+.stats-panel  { flex:1; display:flex; flex-direction:column; gap:10px; }
 .stat-row { display:flex; align-items:center; gap:10px; }
 .stat-label { font-size:.75rem; color:#aaa; width:80px; text-transform:uppercase; letter-spacing:.5px; }
 .stat-bar-wrap { flex:1; height:10px; background:rgba(255,255,255,.1); border-radius:5px; overflow:hidden; }
 .stat-bar { height:100%; border-radius:5px; transition:width .6s ease; }
 .stat-val { font-size:.8rem; font-weight:700; color:#fff; width:28px; text-align:right; }
-
-.bar-speed    { background:linear-gradient(90deg,#2ecc71,#1abc9c); }
-.bar-power    { background:linear-gradient(90deg,#e63946,#ff6b35); }
-.bar-iq       { background:linear-gradient(90deg,#a78bfa,#7c3aed); }
-.bar-stamina  { background:linear-gradient(90deg,#f7c948,#f59e0b); }
-.bar-clutch   { background:linear-gradient(90deg,#ec4899,#be185d); }
-
-.xp-section { width:100%; }
-.xp-label { display:flex; justify-content:space-between; font-size:.75rem; color:#aaa; margin-bottom:6px; }
+.bar-speed   { background:linear-gradient(90deg,#2ecc71,#1abc9c); }
+.bar-power   { background:linear-gradient(90deg,#e63946,#ff6b35); }
+.bar-iq      { background:linear-gradient(90deg,#a78bfa,#7c3aed); }
+.bar-stamina { background:linear-gradient(90deg,#f7c948,#f59e0b); }
+.bar-clutch  { background:linear-gradient(90deg,#ec4899,#be185d); }
+.xp-section  { width:100%; }
+.xp-label    { display:flex; justify-content:space-between; font-size:.75rem; color:#aaa; margin-bottom:6px; }
 .xp-bar-wrap { width:100%; height:14px; background:rgba(255,255,255,.1); border-radius:7px; overflow:hidden; }
-.xp-bar { height:100%; border-radius:7px; background:linear-gradient(90deg,#f7c948,#ff6b35); transition:width .6s ease; }
-
+.xp-bar      { height:100%; border-radius:7px; background:linear-gradient(90deg,#f7c948,#ff6b35); transition:width .6s ease; }
 .action-btns { display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; }
-.action-btn {
+.action-btn  {
   padding:18px; border-radius:16px; border:2px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.06); color:#fff; cursor:pointer;
-  transition:all .2s; text-align:center;
+  background:rgba(255,255,255,.06); color:#fff; cursor:pointer; transition:all .2s; text-align:center;
 }
 .action-btn:hover { transform:translateY(-2px); }
-.action-btn .ab-icon { font-size:1.8rem; }
+.action-btn .ab-icon  { font-size:1.8rem; }
 .action-btn .ab-title { font-size:.9rem; font-weight:800; margin-top:6px; }
-.action-btn .ab-desc { font-size:.72rem; color:#888; margin-top:3px; }
+.action-btn .ab-desc  { font-size:.72rem; color:#888; margin-top:3px; }
 .action-btn.ab-trivia:hover { border-color:#f7c948; background:rgba(247,201,72,.1); }
 .action-btn.ab-battle:hover { border-color:#e63946; background:rgba(230,57,70,.1); }
 .action-btn.ab-shop:hover   { border-color:#a78bfa; background:rgba(167,139,250,.1); }
-
 .badge-row { display:flex; gap:8px; flex-wrap:wrap; }
-.badge {
-  padding:4px 12px; border-radius:20px; font-size:.72rem; font-weight:700;
-  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); color:#ccc;
-}
+.badge { padding:4px 12px; border-radius:20px; font-size:.72rem; font-weight:700; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); color:#ccc; }
 .badge.earned { background:rgba(247,201,72,.2); border-color:#f7c948; color:#f7c948; }
-
-/* TRIVIA SCREEN */
 .hud { display:flex; gap:10px; width:100%; }
 .hud-box { flex:1; background:rgba(255,255,255,.08); border-radius:14px; padding:10px; text-align:center; }
 .hud-lbl { font-size:.65rem; color:#888; text-transform:uppercase; letter-spacing:1px; }
 .hud-val { font-size:1.3rem; font-weight:800; color:#f7c948; }
-
 .timer-wrap { width:100%; height:8px; background:rgba(255,255,255,.1); border-radius:4px; overflow:hidden; }
 .timer-bar  { height:100%; border-radius:4px; transition:width 1s linear, background .5s; }
-
-.q-card { width:100%; }
-.sport-badge {
-  display:inline-block; padding:4px 14px; border-radius:20px;
-  font-size:.78rem; font-weight:700; letter-spacing:1px; margin-bottom:10px;
-}
+.sport-badge { display:inline-block; padding:4px 14px; border-radius:20px; font-size:.78rem; font-weight:700; letter-spacing:1px; margin-bottom:10px; }
 .badge-basketball { background:rgba(255,107,53,.3); color:#ff6b35; border:1px solid #ff6b35; }
 .badge-football   { background:rgba(200,135,58,.3); color:#c8873a; border:1px solid #c8873a; }
 .badge-soccer     { background:rgba(46,204,113,.3); color:#2ecc71; border:1px solid #2ecc71; }
-.q-text { font-size:1.2rem; font-weight:700; line-height:1.4; }
-.diff-badge { float:right; font-size:.7rem; padding:3px 10px; border-radius:10px; font-weight:700; }
+.q-text    { font-size:1.2rem; font-weight:700; line-height:1.4; }
+.diff-badge  { float:right; font-size:.7rem; padding:3px 10px; border-radius:10px; font-weight:700; }
 .diff-easy   { background:rgba(46,204,113,.3); color:#2ecc71; }
 .diff-medium { background:rgba(247,201,72,.3);  color:#f7c948; }
 .diff-hard   { background:rgba(230,57,70,.3);   color:#e63946; }
-
 .answers { display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100%; }
 .ans-btn {
   padding:16px 14px; border-radius:14px; border:2px solid rgba(255,255,255,.15);
@@ -179,19 +135,15 @@ body::before {
 .ans-btn.correct { border-color:#2ecc71!important; background:rgba(46,204,113,.25)!important; }
 .ans-btn.wrong   { border-color:#e63946!important; background:rgba(230,57,70,.25)!important; }
 .ans-btn:disabled { cursor:default; }
-
 .feedback { text-align:center; font-size:1rem; font-weight:700; min-height:28px; }
 .feedback.correct { color:#2ecc71; }
 .feedback.wrong   { color:#e63946; }
-
 .reward-popup {
   display:none; background:rgba(247,201,72,.15); border:2px solid #f7c948;
   border-radius:16px; padding:14px 20px; text-align:center; width:100%;
   animation:pop .3s ease;
 }
 @keyframes pop { 0%{transform:scale(.7);opacity:0} 80%{transform:scale(1.05)} 100%{transform:scale(1);opacity:1} }
-
-/* UPGRADE SCREEN */
 .upgrade-grid { display:flex; flex-direction:column; gap:12px; width:100%; }
 .upgrade-row {
   display:flex; align-items:center; gap:14px;
@@ -207,21 +159,17 @@ body::before {
 .up-btn {
   padding:8px 16px; border-radius:30px; border:none;
   background:linear-gradient(135deg,#f7c948,#ff6b35); color:#000;
-  font-weight:800; cursor:pointer; font-size:.85rem; transition:all .2s;
-  white-space:nowrap;
+  font-weight:800; cursor:pointer; font-size:.85rem; transition:all .2s; white-space:nowrap;
 }
 .up-btn:hover { transform:scale(1.05); }
 .up-btn:disabled { background:rgba(255,255,255,.15); color:#666; cursor:not-allowed; transform:none; }
-
 .sp-display {
   text-align:center; padding:14px; background:rgba(167,139,250,.1);
   border:2px solid rgba(167,139,250,.4); border-radius:14px; width:100%;
 }
 .sp-num { font-size:2rem; font-weight:900; color:#a78bfa; }
 .sp-lbl { font-size:.8rem; color:#aaa; margin-top:2px; }
-
-/* LEVEL UP SCREEN */
-.levelup-big { font-size:5rem; text-align:center; animation:bounce 1s infinite alternate; }
+.levelup-big   { font-size:5rem; text-align:center; animation:bounce 1s infinite alternate; }
 @keyframes bounce { from{transform:translateY(0)} to{transform:translateY(-14px)} }
 .levelup-title { font-size:2rem; font-weight:900; text-align:center;
   background:linear-gradient(135deg,#f7c948,#ff6b35); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
@@ -234,25 +182,22 @@ body::before {
 .perk-icon { font-size:1.8rem; }
 .perk-name { font-size:.9rem; font-weight:800; margin-top:6px; color:#f7c948; }
 .perk-desc { font-size:.72rem; color:#aaa; margin-top:4px; line-height:1.3; }
-
-/* BATTLE SCREEN */
-.battle-arena { width:100%; display:flex; flex-direction:column; gap:16px; }
-.combatants { display:flex; gap:16px; align-items:center; }
+.battle-arena  { width:100%; display:flex; flex-direction:column; gap:16px; }
+.combatants    { display:flex; gap:16px; align-items:center; }
 .fighter {
   flex:1; background:rgba(255,255,255,.06); border-radius:16px; padding:16px; text-align:center;
   border:2px solid rgba(255,255,255,.15);
 }
 .fighter.player { border-color:rgba(247,201,72,.4); }
 .fighter.enemy  { border-color:rgba(230,57,70,.4); }
-.f-avatar { font-size:2.8rem; }
-.f-name { font-size:.85rem; font-weight:800; margin-top:6px; }
+.f-avatar  { font-size:2.8rem; }
+.f-name    { font-size:.85rem; font-weight:800; margin-top:6px; }
 .f-hp-wrap { width:100%; height:10px; background:rgba(255,255,255,.1); border-radius:5px; overflow:hidden; margin-top:8px; }
-.f-hp-bar { height:100%; border-radius:5px; transition:width .5s; }
+.f-hp-bar  { height:100%; border-radius:5px; transition:width .5s; }
 .f-hp-bar.player { background:linear-gradient(90deg,#2ecc71,#1abc9c); }
 .f-hp-bar.enemy  { background:linear-gradient(90deg,#e63946,#ff6b35); }
 .f-hp-text { font-size:.72rem; color:#aaa; margin-top:4px; }
-.vs-badge { font-size:1.4rem; font-weight:900; color:#f7c948; }
-
+.vs-badge  { font-size:1.4rem; font-weight:900; color:#f7c948; }
 .battle-log {
   background:rgba(0,0,0,.3); border-radius:14px; padding:14px;
   height:90px; overflow-y:auto; font-size:.8rem; color:#ccc; line-height:1.8;
@@ -264,17 +209,37 @@ body::before {
   font-size:.85rem; font-weight:700; transition:all .2s; text-align:center;
 }
 .battle-action:hover { border-color:#f7c948; background:rgba(247,201,72,.1); }
-.battle-action:disabled { opacity:.4; cursor:not-allowed; }
 
-/* MISC */
+/* Battle trivia zone - self-contained styles */
+.btv-card {
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+  border-radius:20px; padding:20px; width:100%;
+}
+.btv-label  { color:#f7c948; font-weight:700; font-size:.85rem; margin-bottom:12px; }
+.btv-badge  { display:inline-block; padding:4px 14px; border-radius:20px; font-size:.78rem; font-weight:700; letter-spacing:1px; margin-bottom:10px; }
+.btv-qtext  { font-size:1.1rem; font-weight:700; line-height:1.4; margin-bottom:14px; }
+.btv-answers { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+.btv-ans {
+  padding:14px 12px; border-radius:14px; border:2px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.06); color:#fff; font-size:.9rem; font-weight:600;
+  cursor:pointer; transition:all .2s; text-align:left; line-height:1.3;
+}
+.btv-ans:hover:not(:disabled) { border-color:#f7c948; background:rgba(247,201,72,.1); }
+.btv-ans.correct { border-color:#2ecc71!important; background:rgba(46,204,113,.25)!important; }
+.btv-ans.wrong   { border-color:#e63946!important; background:rgba(230,57,70,.25)!important; }
+.btv-ans:disabled { cursor:default; }
+.btv-feedback { text-align:center; font-size:.95rem; font-weight:700; min-height:24px; }
+.btv-feedback.correct { color:#2ecc71; }
+.btv-feedback.wrong   { color:#e63946; }
+.btv-timer-wrap { width:100%; height:7px; background:rgba(255,255,255,.1); border-radius:4px; overflow:hidden; margin-top:10px; }
+.btv-timer-bar  { height:100%; border-radius:4px; transition:width 1s linear, background .5s; background:#2ecc71; }
+
 .progress-dots { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; }
 .dot { width:13px; height:13px; border-radius:50%; background:rgba(255,255,255,.15); transition:background .3s; }
 .dot.correct { background:#2ecc71; }
 .dot.wrong   { background:#e63946; }
-
 @media(max-width:500px){
-  .answers,.perk-grid,.battle-actions,.action-btns { grid-template-columns:1fr; }
-  .sport-grid,.class-grid { grid-template-columns:repeat(3,1fr); }
+  .answers,.btv-answers,.perk-grid,.battle-actions,.action-btns { grid-template-columns:1fr; }
   .logo { font-size:2rem; }
   .hero-panel { flex-direction:column; }
 }
@@ -283,7 +248,7 @@ body::before {
 <body>
 <div class="wrap">
 
-<!-- SCREEN: INTRO -->
+<!-- INTRO -->
 <div class="screen active" id="introScreen">
   <div class="logo">🏆 Sports Legend RPG</div>
   <div class="sub">Build your athlete. Answer trivia. Become a legend.</div>
@@ -297,7 +262,7 @@ body::before {
   <button class="btn btn-gold" onclick="show('createScreen1')">⚡ Start Your Journey</button>
 </div>
 
-<!-- SCREEN: NAME + SPORT -->
+<!-- NAME + SPORT -->
 <div class="screen" id="createScreen1">
   <div class="logo" style="font-size:1.8rem">Create Your Athlete</div>
   <div class="card">
@@ -308,45 +273,33 @@ body::before {
     <div class="card-title">Choose Your Sport</div>
     <div class="sport-grid">
       <div class="sport-card" data-sport="basketball" onclick="selectSport(this)">
-        <div class="icon">🏀</div>
-        <div class="sname">Basketball</div>
-        <div class="sdesc">Speed +3<br>Clutch +2</div>
+        <div class="icon">🏀</div><div class="sname">Basketball</div><div class="sdesc">Speed +3<br>Clutch +2</div>
       </div>
       <div class="sport-card" data-sport="football" onclick="selectSport(this)">
-        <div class="icon">🏈</div>
-        <div class="sname">Football</div>
-        <div class="sdesc">Power +3<br>Stamina +2</div>
+        <div class="icon">🏈</div><div class="sname">Football</div><div class="sdesc">Power +3<br>Stamina +2</div>
       </div>
       <div class="sport-card" data-sport="soccer" onclick="selectSport(this)">
-        <div class="icon">⚽</div>
-        <div class="sname">Soccer</div>
-        <div class="sdesc">Speed +2<br>Stamina +3</div>
+        <div class="icon">⚽</div><div class="sname">Soccer</div><div class="sdesc">Speed +2<br>Stamina +3</div>
       </div>
     </div>
   </div>
   <button class="btn btn-gold" onclick="goToClass()">Next →</button>
 </div>
 
-<!-- SCREEN: CLASS CHOICE -->
+<!-- CLASS -->
 <div class="screen" id="createScreen2">
   <div class="logo" style="font-size:1.8rem">Choose Your Class</div>
   <div class="card">
     <div class="card-title">Athlete Archetype</div>
     <div class="class-grid">
       <div class="class-card" data-class="scorer" onclick="selectClass(this)">
-        <div class="icon">🎯</div>
-        <div class="cname">Scorer</div>
-        <div class="cdesc">High Power & Clutch. Born to put points on the board.</div>
+        <div class="icon">🎯</div><div class="cname">Scorer</div><div class="cdesc">High Power & Clutch. Born to put points on the board.</div>
       </div>
       <div class="class-card" data-class="speedster" onclick="selectClass(this)">
-        <div class="icon">⚡</div>
-        <div class="cname">Speedster</div>
-        <div class="cdesc">Max Speed & Stamina. Nobody can keep up with you.</div>
+        <div class="icon">⚡</div><div class="cname">Speedster</div><div class="cdesc">Max Speed & Stamina. Nobody can keep up with you.</div>
       </div>
       <div class="class-card" data-class="playmaker" onclick="selectClass(this)">
-        <div class="icon">🧠</div>
-        <div class="cname">Playmaker</div>
-        <div class="cdesc">High IQ & Clutch. You see the game before it happens.</div>
+        <div class="icon">🧠</div><div class="cname">Playmaker</div><div class="cdesc">High IQ & Clutch. You see the game before it happens.</div>
       </div>
     </div>
   </div>
@@ -360,57 +313,39 @@ body::before {
   </div>
 </div>
 
-<!-- SCREEN: HUB -->
+<!-- HUB -->
 <div class="screen" id="hubScreen">
   <div class="hero-panel">
     <div class="avatar-box">
       <div class="avatar-emoji" id="hubAvatar">🏀</div>
-      <div class="avatar-name" id="hubName">—</div>
+      <div class="avatar-name"  id="hubName">—</div>
       <div class="avatar-level" id="hubLevel">Level 1</div>
       <div class="avatar-class" id="hubClass">Scorer</div>
     </div>
     <div class="stats-panel" id="statsPanel"></div>
   </div>
-
   <div class="xp-section card">
-    <div class="xp-label">
-      <span>⭐ XP Progress</span>
-      <span id="xpLabel">0 / 100 XP</span>
-    </div>
+    <div class="xp-label"><span>⭐ XP Progress</span><span id="xpLabel">0 / 100 XP</span></div>
     <div class="xp-bar-wrap"><div class="xp-bar" id="xpBar" style="width:0%"></div></div>
-    <div style="margin-top:8px;font-size:.75rem;color:#888;text-align:center">
-      Stat Points: <span id="spCount" style="color:#a78bfa;font-weight:800">0</span>
-    </div>
+    <div style="margin-top:8px;font-size:.75rem;color:#888;text-align:center">Stat Points: <span id="spCount" style="color:#a78bfa;font-weight:800">0</span></div>
   </div>
-
   <div class="action-btns">
     <div class="action-btn ab-trivia" onclick="startTrivia('easy')">
-      <div class="ab-icon">🎯</div>
-      <div class="ab-title">Easy Trivia</div>
-      <div class="ab-desc">+10–20 XP per question</div>
+      <div class="ab-icon">🎯</div><div class="ab-title">Easy Trivia</div><div class="ab-desc">+10–20 XP per question</div>
     </div>
     <div class="action-btn ab-trivia" onclick="startTrivia('medium')">
-      <div class="ab-icon">🔥</div>
-      <div class="ab-title">Medium Trivia</div>
-      <div class="ab-desc">+20–35 XP per question</div>
+      <div class="ab-icon">🔥</div><div class="ab-title">Medium Trivia</div><div class="ab-desc">+20–35 XP per question</div>
     </div>
     <div class="action-btn ab-trivia" onclick="startTrivia('hard')">
-      <div class="ab-icon">💀</div>
-      <div class="ab-title">Hard Trivia</div>
-      <div class="ab-desc">+35–60 XP per question</div>
+      <div class="ab-icon">💀</div><div class="ab-title">Hard Trivia</div><div class="ab-desc">+35–60 XP per question</div>
     </div>
     <div class="action-btn ab-battle" onclick="startBattle()">
-      <div class="ab-icon">⚔️</div>
-      <div class="ab-title">Battle Rival</div>
-      <div class="ab-desc">Fight rival athletes!</div>
+      <div class="ab-icon">⚔️</div><div class="ab-title">Battle Rival</div><div class="ab-desc">Fight rival athletes!</div>
     </div>
     <div class="action-btn ab-shop" onclick="show('upgradeScreen')" style="grid-column:1/-1">
-      <div class="ab-icon">📈</div>
-      <div class="ab-title">Upgrade Stats</div>
-      <div class="ab-desc">Spend Stat Points to power up your athlete</div>
+      <div class="ab-icon">📈</div><div class="ab-title">Upgrade Stats</div><div class="ab-desc">Spend Stat Points to power up your athlete</div>
     </div>
   </div>
-
   <div class="card">
     <div class="card-title">🏅 Achievements</div>
     <div class="badge-row" id="badgeRow">
@@ -425,7 +360,7 @@ body::before {
   </div>
 </div>
 
-<!-- SCREEN: TRIVIA -->
+<!-- TRIVIA -->
 <div class="screen" id="triviaScreen">
   <div class="hud">
     <div class="hud-box"><div class="hud-lbl">XP Earned</div><div class="hud-val" id="t-xp">0</div></div>
@@ -433,20 +368,20 @@ body::before {
     <div class="hud-box"><div class="hud-lbl">Question</div><div class="hud-val" id="t-qnum">1/5</div></div>
   </div>
   <div class="timer-wrap"><div class="timer-bar" id="timerBar"></div></div>
-  <div class="card q-card">
+  <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
       <div id="sportBadge" class="sport-badge"></div>
-      <div id="diffBadge" class="diff-badge"></div>
+      <div id="diffBadge"  class="diff-badge"></div>
     </div>
     <div class="q-text" id="qText"></div>
   </div>
-  <div class="answers" id="answersGrid"></div>
-  <div class="feedback" id="feedback"></div>
+  <div class="answers"      id="answersGrid"></div>
+  <div class="feedback"     id="feedback"></div>
   <div class="reward-popup" id="rewardPopup"></div>
   <div class="progress-dots" id="progressDots"></div>
 </div>
 
-<!-- SCREEN: TRIVIA RESULTS -->
+<!-- RESULTS -->
 <div class="screen" id="resultsScreen">
   <div class="logo" style="font-size:1.8rem">Round Complete!</div>
   <div class="card" style="text-align:center">
@@ -460,11 +395,11 @@ body::before {
   </div>
   <div style="display:flex;gap:12px">
     <button class="btn btn-outline" onclick="show('hubScreen');renderHub()">🏠 Hub</button>
-    <button class="btn btn-gold" id="playAgainBtn">▶ Play Again</button>
+    <button class="btn btn-gold"    id="playAgainBtn">▶ Play Again</button>
   </div>
 </div>
 
-<!-- SCREEN: UPGRADE -->
+<!-- UPGRADE -->
 <div class="screen" id="upgradeScreen">
   <div class="logo" style="font-size:1.8rem">⬆ Upgrade Stats</div>
   <div class="sp-display">
@@ -475,7 +410,7 @@ body::before {
   <button class="btn btn-gold" onclick="show('hubScreen');renderHub()">✅ Done</button>
 </div>
 
-<!-- SCREEN: LEVEL UP -->
+<!-- LEVEL UP -->
 <div class="screen" id="levelupScreen">
   <div class="levelup-big">🎉</div>
   <div class="levelup-title" id="lvlTitle">LEVEL UP!</div>
@@ -486,26 +421,27 @@ body::before {
   </div>
 </div>
 
-<!-- SCREEN: BATTLE -->
+<!-- BATTLE -->
 <div class="screen" id="battleScreen">
   <div class="logo" style="font-size:1.8rem">⚔️ Battle Mode</div>
   <div class="battle-arena">
     <div class="combatants">
       <div class="fighter player">
         <div class="f-avatar" id="b-pAvatar">🏀</div>
-        <div class="f-name" id="b-pName">You</div>
+        <div class="f-name"   id="b-pName">You</div>
         <div class="f-hp-wrap"><div class="f-hp-bar player" id="b-pHp" style="width:100%"></div></div>
         <div class="f-hp-text" id="b-pHpText">100/100</div>
       </div>
       <div class="vs-badge">VS</div>
       <div class="fighter enemy">
         <div class="f-avatar" id="b-eAvatar">😤</div>
-        <div class="f-name" id="b-eName">Rival</div>
+        <div class="f-name"   id="b-eName">Rival</div>
         <div class="f-hp-wrap"><div class="f-hp-bar enemy" id="b-eHp" style="width:100%"></div></div>
         <div class="f-hp-text" id="b-eHpText">100/100</div>
       </div>
     </div>
     <div class="battle-log" id="battleLog"></div>
+    <!-- Battle trivia lives entirely here with its own unique IDs -->
     <div id="battleTriviaZone"></div>
     <div class="battle-actions" id="battleActions" style="display:none">
       <button class="battle-action" onclick="battleAction('attack')">⚡ Attack<br><small>Answer trivia for damage</small></button>
@@ -515,110 +451,108 @@ body::before {
   </div>
 </div>
 
-</div><!-- /wrap -->
+</div>
 
 <script>
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 // DATA
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 const SPORT_BONUSES = {
-  basketball: { speed:3, power:0, iq:0, stamina:0, clutch:2 },
-  football:   { speed:0, power:3, iq:0, stamina:2, clutch:0 },
-  soccer:     { speed:2, power:0, iq:0, stamina:3, clutch:0 },
+  basketball:{ speed:3, power:0, iq:0, stamina:0, clutch:2 },
+  football:  { speed:0, power:3, iq:0, stamina:2, clutch:0 },
+  soccer:    { speed:2, power:0, iq:0, stamina:3, clutch:0 },
 };
 const CLASS_BONUSES = {
-  scorer:    { speed:0, power:3, iq:0, stamina:0, clutch:3 },
-  speedster: { speed:4, power:0, iq:0, stamina:3, clutch:0 },
-  playmaker: { speed:0, power:0, iq:5, stamina:0, clutch:2 },
+  scorer:   { speed:0, power:3, iq:0, stamina:0, clutch:3 },
+  speedster:{ speed:4, power:0, iq:0, stamina:3, clutch:0 },
+  playmaker:{ speed:0, power:0, iq:5, stamina:0, clutch:2 },
 };
 const CLASS_AVATARS = { basketball:'🏀', football:'🏈', soccer:'⚽' };
 const STAT_META = {
-  speed:   { label:'Speed',   icon:'⚡', bar:'bar-speed',   desc:'Dodge chance & timer bonus in battles' },
-  power:   { label:'Power',   icon:'💪', bar:'bar-power',   desc:'Damage dealt in battles' },
-  iq:      { label:'IQ',      icon:'🧠', bar:'bar-iq',      desc:'Bonus XP on correct answers' },
-  stamina: { label:'Stamina', icon:'❤️', bar:'bar-stamina', desc:'HP pool in battles' },
-  clutch:  { label:'Clutch',  icon:'🎯', bar:'bar-clutch',  desc:'Streak bonuses & hard question rewards' },
+  speed:  { label:'Speed',   icon:'⚡', bar:'bar-speed',   desc:'Dodge chance & timer bonus' },
+  power:  { label:'Power',   icon:'💪', bar:'bar-power',   desc:'Damage dealt in battles' },
+  iq:     { label:'IQ',      icon:'🧠', bar:'bar-iq',      desc:'Bonus XP on correct answers' },
+  stamina:{ label:'Stamina', icon:'❤️', bar:'bar-stamina', desc:'HP pool in battles' },
+  clutch: { label:'Clutch',  icon:'🎯', bar:'bar-clutch',  desc:'Streak bonuses & hard rewards' },
 };
 const XP_PER_LEVEL = lvl => 100 + lvl * 50;
+const TIME_LIMITS  = { easy:20, medium:15, hard:10 };
+const XP_RANGES    = { easy:[10,20], medium:[20,35], hard:[35,60] };
 
 const PERKS = [
-  { id:'iron_will',   name:'Iron Will',    icon:'🛡️', desc:'Stamina +2, Max HP increases',        stat:'stamina', val:2 },
-  { id:'quick_hands', name:'Quick Hands',  icon:'⚡', desc:'Speed +3, timer feels slower',         stat:'speed',   val:3 },
-  { id:'big_brain',   name:'Big Brain',    icon:'🧠', desc:'IQ +3, earn 10% bonus XP always',     stat:'iq',      val:3 },
-  { id:'clutch_gene', name:'Clutch Gene',  icon:'🎯', desc:'Clutch +3, streaks give more XP',     stat:'clutch',  val:3 },
-  { id:'beast_mode',  name:'Beast Mode',   icon:'💪', desc:'Power +3, attacks hit harder',         stat:'power',   val:3 },
-  { id:'unstoppable', name:'Unstoppable',  icon:'🔥', desc:'All stats +1',                         stat:'all',     val:1 },
+  { id:'iron_will',   name:'Iron Will',   icon:'🛡️', desc:'Stamina +2, Max HP increases',      stat:'stamina', val:2 },
+  { id:'quick_hands', name:'Quick Hands', icon:'⚡', desc:'Speed +3, timer feels slower',       stat:'speed',   val:3 },
+  { id:'big_brain',   name:'Big Brain',   icon:'🧠', desc:'IQ +3, earn 10% bonus XP always',   stat:'iq',      val:3 },
+  { id:'clutch_gene', name:'Clutch Gene', icon:'🎯', desc:'Clutch +3, streaks give more XP',   stat:'clutch',  val:3 },
+  { id:'beast_mode',  name:'Beast Mode',  icon:'💪', desc:'Power +3, attacks hit harder',       stat:'power',   val:3 },
+  { id:'unstoppable', name:'Unstoppable', icon:'🔥', desc:'All stats +1',                       stat:'all',     val:1 },
 ];
-
 const ENEMIES = [
-  { name:'Street Baller',  avatar:'🏀', hp:80,  power:6,  sport:'basketball' },
-  { name:'The Linebacker', avatar:'🏈', hp:100, power:8,  sport:'football'   },
-  { name:'Wonder Winger',  avatar:'⚽', hp:75,  power:5,  sport:'soccer'     },
-  { name:'The Sniper',     avatar:'🎯', hp:90,  power:7,  sport:'basketball' },
-  { name:'Iron Fullback',  avatar:'💪', hp:120, power:10, sport:'football'   },
-  { name:'Speed Demon',    avatar:'⚡', hp:70,  power:6,  sport:'soccer'     },
+  { name:'Street Baller',  avatar:'🏀', hp:80,  power:6  },
+  { name:'The Linebacker', avatar:'🏈', hp:100, power:8  },
+  { name:'Wonder Winger',  avatar:'⚽', hp:75,  power:5  },
+  { name:'The Sniper',     avatar:'🎯', hp:90,  power:7  },
+  { name:'Iron Fullback',  avatar:'💪', hp:120, power:10 },
+  { name:'Speed Demon',    avatar:'⚡', hp:70,  power:6  },
 ];
-
-const TIME_LIMITS = { easy:20, medium:15, hard:10 };
-const XP_RANGES   = { easy:[10,20], medium:[20,35], hard:[35,60] };
 
 const QUESTIONS = {
   basketball:[
-    {q:"How many points is a three-pointer worth?",                          a:["3","2","4","1"],                                                                              correct:0, diff:"easy"},
-    {q:"How many players are on the court per team?",                        a:["5","6","4","7"],                                                                              correct:0, diff:"easy"},
-    {q:"Which team did LeBron win his FIRST championship with?",             a:["Miami Heat","Cleveland Cavaliers","Los Angeles Lakers","Chicago Bulls"],                       correct:0, diff:"easy"},
-    {q:"What is the NBA shot clock limit?",                                  a:["24 seconds","30 seconds","20 seconds","35 seconds"],                                          correct:0, diff:"easy"},
-    {q:"How tall is a regulation NBA hoop?",                                 a:["10 feet","9 feet","11 feet","12 feet"],                                                       correct:0, diff:"easy"},
-    {q:"Who holds the NBA single-game scoring record?",                      a:["Wilt Chamberlain","Kobe Bryant","LeBron James","Michael Jordan"],                             correct:0, diff:"medium"},
-    {q:"Which player is nicknamed 'The Greek Freak'?",                       a:["Giannis Antetokounmpo","Nikola Jokic","Luka Doncic","Kristaps Porzingis"],                    correct:0, diff:"medium"},
-    {q:"How many Bulls championships did Michael Jordan win?",               a:["6","5","4","7"],                                                                              correct:0, diff:"medium"},
-    {q:"Which team has won the most NBA championships?",                     a:["Boston Celtics","Los Angeles Lakers","Chicago Bulls","Golden State Warriors"],                 correct:0, diff:"medium"},
-    {q:"How many career NBA MVP awards did Kareem Abdul-Jabbar win?",        a:["6","5","4","3"],                                                                              correct:0, diff:"medium"},
-    {q:"How many points did Wilt Chamberlain score in his record game?",     a:["100","98","102","95"],                                                                        correct:0, diff:"hard"},
-    {q:"What year was the NBA founded?",                                     a:["1946","1950","1940","1955"],                                                                  correct:0, diff:"hard"},
-    {q:"Stephen Curry's record single-season three-pointer count?",          a:["402","387","368","415"],                                                                      correct:0, diff:"hard"},
-    {q:"Which country won the 1936 Olympic basketball gold medal?",          a:["United States","Canada","Soviet Union","Brazil"],                                             correct:0, diff:"hard"},
-    {q:"Who won the first NBA Slam Dunk Contest in 1976?",                   a:["Julius Erving","David Thompson","Artis Gilmore","George Gervin"],                            correct:0, diff:"hard"},
+    {q:"How many points is a three-pointer worth?",                     a:["3","2","4","1"],                                                                             correct:0,diff:"easy"},
+    {q:"How many players are on the court per team?",                   a:["5","6","4","7"],                                                                             correct:0,diff:"easy"},
+    {q:"Which team did LeBron win his FIRST championship with?",        a:["Miami Heat","Cleveland Cavaliers","Los Angeles Lakers","Chicago Bulls"],                      correct:0,diff:"easy"},
+    {q:"What is the NBA shot clock limit?",                             a:["24 seconds","30 seconds","20 seconds","35 seconds"],                                         correct:0,diff:"easy"},
+    {q:"How tall is a regulation NBA hoop?",                            a:["10 feet","9 feet","11 feet","12 feet"],                                                      correct:0,diff:"easy"},
+    {q:"Who holds the NBA single-game scoring record?",                 a:["Wilt Chamberlain","Kobe Bryant","LeBron James","Michael Jordan"],                            correct:0,diff:"medium"},
+    {q:"Which player is nicknamed 'The Greek Freak'?",                  a:["Giannis Antetokounmpo","Nikola Jokic","Luka Doncic","Kristaps Porzingis"],                   correct:0,diff:"medium"},
+    {q:"How many Bulls championships did Michael Jordan win?",          a:["6","5","4","7"],                                                                             correct:0,diff:"medium"},
+    {q:"Which team has won the most NBA championships?",                a:["Boston Celtics","Los Angeles Lakers","Chicago Bulls","Golden State Warriors"],                correct:0,diff:"medium"},
+    {q:"How many career MVP awards did Kareem Abdul-Jabbar win?",       a:["6","5","4","3"],                                                                             correct:0,diff:"medium"},
+    {q:"How many points did Wilt Chamberlain score in his record game?",a:["100","98","102","95"],                                                                       correct:0,diff:"hard"},
+    {q:"What year was the NBA founded?",                                a:["1946","1950","1940","1955"],                                                                 correct:0,diff:"hard"},
+    {q:"Stephen Curry's record single-season three-pointer count?",    a:["402","387","368","415"],                                                                     correct:0,diff:"hard"},
+    {q:"Which country won the 1936 Olympic basketball gold medal?",     a:["United States","Canada","Soviet Union","Brazil"],                                            correct:0,diff:"hard"},
+    {q:"Who won the first NBA Slam Dunk Contest in 1976?",              a:["Julius Erving","David Thompson","Artis Gilmore","George Gervin"],                           correct:0,diff:"hard"},
   ],
   football:[
-    {q:"How many points does a touchdown score?",                            a:["6","7","8","5"],                                                                              correct:0, diff:"easy"},
-    {q:"How many players per team on the field in NFL?",                     a:["11","12","10","9"],                                                                           correct:0, diff:"easy"},
-    {q:"Who won Super Bowl LVIII in 2024?",                                  a:["Kansas City Chiefs","San Francisco 49ers","Baltimore Ravens","Buffalo Bills"],                correct:0, diff:"easy"},
-    {q:"How many downs to move 10 yards?",                                   a:["4","3","5","6"],                                                                              correct:0, diff:"easy"},
-    {q:"What does NFL stand for?",                                           a:["National Football League","National Field League","North Football League","National Finals League"], correct:0, diff:"easy"},
-    {q:"Which QB has won the most Super Bowls?",                             a:["Tom Brady","Joe Montana","Terry Bradshaw","Patrick Mahomes"],                                 correct:0, diff:"medium"},
-    {q:"How long is an NFL field from end zone to end zone?",                a:["100 yards","110 yards","120 yards","90 yards"],                                               correct:0, diff:"medium"},
-    {q:"Name of the Super Bowl trophy?",                                     a:["Vince Lombardi Trophy","George Halas Trophy","Pete Rozelle Trophy","Walter Payton Trophy"],   correct:0, diff:"medium"},
-    {q:"Which team plays at Lambeau Field?",                                 a:["Green Bay Packers","Chicago Bears","Minnesota Vikings","Detroit Lions"],                      correct:0, diff:"medium"},
-    {q:"How many points is a safety worth?",                                 a:["2","1","3","6"],                                                                              correct:0, diff:"medium"},
-    {q:"Who holds the NFL record for most career passing touchdowns?",       a:["Tom Brady","Peyton Manning","Drew Brees","Brett Favre"],                                      correct:0, diff:"hard"},
-    {q:"LaDainian Tomlinson's single-season rushing TD record?",             a:["28","24","26","30"],                                                                          correct:0, diff:"hard"},
-    {q:"City where the first Super Bowl was played?",                        a:["Los Angeles","New Orleans","Miami","Green Bay"],                                              correct:0, diff:"hard"},
-    {q:"What pick was Patrick Mahomes drafted in 2017?",                     a:["10th","15th","7th","22nd"],                                                                   correct:0, diff:"hard"},
-    {q:"Score of the highest-scoring Super Bowl ever?",                      a:["55-10","49-26","43-8","41-33"],                                                               correct:0, diff:"hard"},
+    {q:"How many points does a touchdown score?",                       a:["6","7","8","5"],                                                                             correct:0,diff:"easy"},
+    {q:"How many players per team on the field in NFL?",                a:["11","12","10","9"],                                                                          correct:0,diff:"easy"},
+    {q:"Who won Super Bowl LVIII in 2024?",                             a:["Kansas City Chiefs","San Francisco 49ers","Baltimore Ravens","Buffalo Bills"],                correct:0,diff:"easy"},
+    {q:"How many downs to move 10 yards?",                              a:["4","3","5","6"],                                                                             correct:0,diff:"easy"},
+    {q:"What does NFL stand for?",                                      a:["National Football League","National Field League","North Football League","National Finals League"],correct:0,diff:"easy"},
+    {q:"Which QB has won the most Super Bowls?",                        a:["Tom Brady","Joe Montana","Terry Bradshaw","Patrick Mahomes"],                                 correct:0,diff:"medium"},
+    {q:"How long is an NFL field end zone to end zone?",                a:["100 yards","110 yards","120 yards","90 yards"],                                              correct:0,diff:"medium"},
+    {q:"Name of the Super Bowl trophy?",                                a:["Vince Lombardi Trophy","George Halas Trophy","Pete Rozelle Trophy","Walter Payton Trophy"],  correct:0,diff:"medium"},
+    {q:"Which team plays at Lambeau Field?",                            a:["Green Bay Packers","Chicago Bears","Minnesota Vikings","Detroit Lions"],                     correct:0,diff:"medium"},
+    {q:"How many points is a safety worth?",                            a:["2","1","3","6"],                                                                             correct:0,diff:"medium"},
+    {q:"Who holds the NFL record for most career passing touchdowns?",  a:["Tom Brady","Peyton Manning","Drew Brees","Brett Favre"],                                     correct:0,diff:"hard"},
+    {q:"LaDainian Tomlinson's single-season rushing TD record?",        a:["28","24","26","30"],                                                                         correct:0,diff:"hard"},
+    {q:"City where the first Super Bowl was played?",                   a:["Los Angeles","New Orleans","Miami","Green Bay"],                                             correct:0,diff:"hard"},
+    {q:"What pick was Patrick Mahomes drafted in 2017?",                a:["10th","15th","7th","22nd"],                                                                  correct:0,diff:"hard"},
+    {q:"Score of the highest-scoring Super Bowl ever?",                 a:["55-10","49-26","43-8","41-33"],                                                              correct:0,diff:"hard"},
   ],
   soccer:[
-    {q:"How many players per team on a soccer field?",                       a:["11","10","12","9"],                                                                           correct:0, diff:"easy"},
-    {q:"How long is a standard soccer match?",                               a:["90 minutes","80 minutes","100 minutes","60 minutes"],                                         correct:0, diff:"easy"},
-    {q:"Which country has won the most FIFA World Cups?",                    a:["Brazil","Germany","Argentina","Italy"],                                                       correct:0, diff:"easy"},
-    {q:"What card sends a player off the field?",                            a:["Red","Yellow","Orange","Black"],                                                              correct:0, diff:"easy"},
-    {q:"Who won 8 Ballon d'Or awards?",                                      a:["Lionel Messi","Cristiano Ronaldo","Pelé","Zinedine Zidane"],                                  correct:0, diff:"easy"},
-    {q:"Which club has the most Champions League titles?",                   a:["Real Madrid","FC Barcelona","Bayern Munich","AC Milan"],                                      correct:0, diff:"medium"},
-    {q:"What is a 'hat trick'?",                                             a:["3 goals by one player","A penalty kick","A header goal","Two goals in a row"],                correct:0, diff:"medium"},
-    {q:"Host country of the 2022 FIFA World Cup?",                           a:["Qatar","Saudi Arabia","UAE","Bahrain"],                                                       correct:0, diff:"medium"},
-    {q:"What is 'offside' in soccer?",                                       a:["Illegal position near opponent's goal","A foul tackle","Using hands","Delay of game"],        correct:0, diff:"medium"},
-    {q:"Who won the Golden Boot at the 2022 World Cup?",                     a:["Kylian Mbappé","Lionel Messi","Olivier Giroud","Richarlison"],                                correct:0, diff:"medium"},
-    {q:"Miroslav Klose's all-time World Cup goal record?",                   a:["16","15","14","17"],                                                                          correct:0, diff:"hard"},
-    {q:"What year did the Premier League begin?",                            a:["1992","1990","1988","1995"],                                                                  correct:0, diff:"hard"},
-    {q:"Goalkeeper with most Premier League clean sheets?",                  a:["Petr Cech","Edwin van der Sar","David James","Mark Schwarzer"],                              correct:0, diff:"hard"},
-    {q:"Who scored the 'Hand of God' goal in 1986?",                         a:["Diego Maradona","Pelé","Roberto Baggio","Johan Cruyff"],                                      correct:0, diff:"hard"},
-    {q:"Who won the first FIFA World Cup in 1930?",                          a:["Uruguay","Brazil","Argentina","Italy"],                                                       correct:0, diff:"hard"},
+    {q:"How many players per team on a soccer field?",                  a:["11","10","12","9"],                                                                          correct:0,diff:"easy"},
+    {q:"How long is a standard soccer match?",                          a:["90 minutes","80 minutes","100 minutes","60 minutes"],                                        correct:0,diff:"easy"},
+    {q:"Which country has won the most FIFA World Cups?",               a:["Brazil","Germany","Argentina","Italy"],                                                      correct:0,diff:"easy"},
+    {q:"What card sends a player off the field?",                       a:["Red","Yellow","Orange","Black"],                                                             correct:0,diff:"easy"},
+    {q:"Who won 8 Ballon d'Or awards?",                                 a:["Lionel Messi","Cristiano Ronaldo","Pelé","Zinedine Zidane"],                                 correct:0,diff:"easy"},
+    {q:"Which club has the most Champions League titles?",              a:["Real Madrid","FC Barcelona","Bayern Munich","AC Milan"],                                     correct:0,diff:"medium"},
+    {q:"What is a 'hat trick'?",                                        a:["3 goals by one player","A penalty kick","A header goal","Two goals in a row"],               correct:0,diff:"medium"},
+    {q:"Host country of the 2022 FIFA World Cup?",                      a:["Qatar","Saudi Arabia","UAE","Bahrain"],                                                      correct:0,diff:"medium"},
+    {q:"What is 'offside' in soccer?",                                  a:["Illegal position near opponent's goal","A foul tackle","Using hands","Delay of game"],       correct:0,diff:"medium"},
+    {q:"Who won the Golden Boot at the 2022 World Cup?",                a:["Kylian Mbappé","Lionel Messi","Olivier Giroud","Richarlison"],                               correct:0,diff:"medium"},
+    {q:"Miroslav Klose's all-time World Cup goal record?",              a:["16","15","14","17"],                                                                         correct:0,diff:"hard"},
+    {q:"What year did the Premier League begin?",                       a:["1992","1990","1988","1995"],                                                                 correct:0,diff:"hard"},
+    {q:"Goalkeeper with most Premier League clean sheets?",             a:["Petr Cech","Edwin van der Sar","David James","Mark Schwarzer"],                              correct:0,diff:"hard"},
+    {q:"Who scored the 'Hand of God' goal in 1986?",                    a:["Diego Maradona","Pelé","Roberto Baggio","Johan Cruyff"],                                     correct:0,diff:"hard"},
+    {q:"Who won the first FIFA World Cup in 1930?",                     a:["Uruguay","Brazil","Argentina","Italy"],                                                      correct:0,diff:"hard"},
   ]
 };
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 // STATE
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 let hero = {
   name:'', sport:'basketball', heroClass:'scorer',
   level:1, xp:0, sp:0,
@@ -628,492 +562,444 @@ let hero = {
 let triviaState = {
   diff:'easy', questions:[], current:0,
   xpEarned:0, streak:0, bestStreak:0, correct:0,
-  timer:null, timeLeft:0, answered:false, dots:[], mode:'trivia'
+  timer:null, timeLeft:0, answered:false, dots:[]
 };
-let battleState = { phase:'choose', enemy:null, pHp:0, eHp:0, pMaxHp:0, eMaxHp:0, action:'' };
+// Battle keeps its own separate question + timer state
+let battleQ = { q:null, answered:false, timer:null, timeLeft:0, action:'' };
+let battleState = { enemy:null, pHp:0, eHp:0, pMaxHp:0, eMaxHp:0 };
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 // UTILS
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 function show(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   if(id === 'upgradeScreen') renderUpgrade();
 }
 function shuffle(arr){ return [...arr].sort(() => Math.random() - .5); }
-function clamp(v, mn, mx){ return Math.max(mn, Math.min(mx, v)); }
-function statPct(v){ return clamp((v / 30) * 100, 4, 100); }
+function clamp(v,mn,mx){ return Math.max(mn, Math.min(mx, v)); }
+function statPct(v){ return clamp((v/30)*100, 4, 100); }
+function detectSport(q){
+  const t = q.q.toLowerCase();
+  if(t.includes('basket')||t.includes('nba')||t.includes('dunk')) return 'basketball';
+  if(t.includes('football')||t.includes('nfl')||t.includes('touchdown')||t.includes('super bowl')||t.includes('linebacker')) return 'football';
+  return 'soccer';
+}
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 // CHARACTER CREATION
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 function selectSport(el){
-  document.querySelectorAll('.sport-card').forEach(c => c.classList.remove('sel'));
-  el.classList.add('sel');
-  hero.sport = el.dataset.sport;
+  document.querySelectorAll('.sport-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel'); hero.sport = el.dataset.sport;
 }
 function selectClass(el){
-  document.querySelectorAll('.class-card').forEach(c => c.classList.remove('sel'));
-  el.classList.add('sel');
-  hero.heroClass = el.dataset.class;
+  document.querySelectorAll('.class-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel'); hero.heroClass = el.dataset.class;
   showClassPreview();
 }
 function goToClass(){
   const name = document.getElementById('nameInput').value.trim();
   if(!name){ alert('Give your athlete a name!'); return; }
   if(!document.querySelector('.sport-card.sel')){ alert('Pick a sport!'); return; }
-  hero.name = name;
-  show('createScreen2');
+  hero.name = name; show('createScreen2');
 }
 function showClassPreview(){
-  const s = SPORT_BONUSES[hero.sport], c = CLASS_BONUSES[hero.heroClass];
-  const base = { speed:5, power:5, iq:5, stamina:5, clutch:5 };
-  let html = '';
-  ['speed','power','iq','stamina','clutch'].forEach(k => {
-    const total = base[k] + (s[k]||0) + (c[k]||0);
-    const m = STAT_META[k];
-    html += `<div class="stat-row" style="margin-bottom:8px">
+  const s=SPORT_BONUSES[hero.sport], c=CLASS_BONUSES[hero.heroClass];
+  let html='';
+  ['speed','power','iq','stamina','clutch'].forEach(k=>{
+    const total=5+(s[k]||0)+(c[k]||0), m=STAT_META[k];
+    html+=`<div class="stat-row" style="margin-bottom:8px">
       <div class="stat-label">${m.icon} ${m.label}</div>
       <div class="stat-bar-wrap"><div class="stat-bar ${m.bar}" style="width:${statPct(total)}%"></div></div>
-      <div class="stat-val">${total}</div>
-    </div>`;
+      <div class="stat-val">${total}</div></div>`;
   });
-  document.getElementById('classPreviewStats').innerHTML = html;
-  document.getElementById('classPrev').style.display = 'block';
+  document.getElementById('classPreviewStats').innerHTML=html;
+  document.getElementById('classPrev').style.display='block';
 }
 function finalizeChar(){
   if(!document.querySelector('.class-card.sel')){ alert('Pick a class!'); return; }
-  const s = SPORT_BONUSES[hero.sport], c = CLASS_BONUSES[hero.heroClass];
-  Object.keys(hero.stats).forEach(k => { hero.stats[k] = 5 + (s[k]||0) + (c[k]||0); });
-  renderHub();
-  show('hubScreen');
+  const s=SPORT_BONUSES[hero.sport], c=CLASS_BONUSES[hero.heroClass];
+  Object.keys(hero.stats).forEach(k=>{ hero.stats[k]=5+(s[k]||0)+(c[k]||0); });
+  renderHub(); show('hubScreen');
 }
 
-// ═══════════════════════════════════════
-// HUB RENDER
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
+// HUB
+// ═══════════════════════════════════
 function renderHub(){
-  document.getElementById('hubAvatar').textContent = CLASS_AVATARS[hero.sport] || '🏆';
+  document.getElementById('hubAvatar').textContent = CLASS_AVATARS[hero.sport]||'🏆';
   document.getElementById('hubName').textContent   = hero.name;
   document.getElementById('hubLevel').textContent  = `Level ${hero.level}`;
-  document.getElementById('hubClass').textContent  = hero.heroClass.charAt(0).toUpperCase() + hero.heroClass.slice(1);
-
-  let html = '';
-  Object.keys(STAT_META).forEach(k => {
-    const m = STAT_META[k];
-    html += `<div class="stat-row">
+  document.getElementById('hubClass').textContent  = hero.heroClass.charAt(0).toUpperCase()+hero.heroClass.slice(1);
+  let html='';
+  Object.keys(STAT_META).forEach(k=>{
+    const m=STAT_META[k];
+    html+=`<div class="stat-row">
       <div class="stat-label">${m.icon} ${m.label}</div>
       <div class="stat-bar-wrap"><div class="stat-bar ${m.bar}" style="width:${statPct(hero.stats[k])}%"></div></div>
-      <div class="stat-val">${hero.stats[k]}</div>
-    </div>`;
+      <div class="stat-val">${hero.stats[k]}</div></div>`;
   });
-  document.getElementById('statsPanel').innerHTML = html;
-
-  const need = XP_PER_LEVEL(hero.level);
-  document.getElementById('xpLabel').textContent = `${hero.xp} / ${need} XP`;
-  document.getElementById('xpBar').style.width   = `${clamp((hero.xp / need) * 100, 0, 100)}%`;
-  document.getElementById('spCount').textContent = hero.sp;
-
-  hero.badges.forEach(b => {
-    const el = document.getElementById('badge-' + b);
-    if(el) el.classList.add('earned');
-  });
+  document.getElementById('statsPanel').innerHTML=html;
+  const need=XP_PER_LEVEL(hero.level);
+  document.getElementById('xpLabel').textContent=`${hero.xp} / ${need} XP`;
+  document.getElementById('xpBar').style.width=`${clamp((hero.xp/need)*100,0,100)}%`;
+  document.getElementById('spCount').textContent=hero.sp;
+  hero.badges.forEach(b=>{ const el=document.getElementById('badge-'+b); if(el) el.classList.add('earned'); });
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 // XP + LEVEL UP
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 function gainXP(amount){
-  const iqBonus = hero.perks.includes('big_brain') ? Math.floor(amount * .1) : 0;
-  hero.xp += amount + iqBonus;
-  let leveled = false;
-  while(hero.xp >= XP_PER_LEVEL(hero.level)){
-    hero.xp -= XP_PER_LEVEL(hero.level);
-    hero.level++;
-    hero.sp += 3;
-    leveled = true;
-  }
+  const bonus = hero.perks.includes('big_brain') ? Math.floor(amount*.1) : 0;
+  hero.xp += amount+bonus;
+  let leveled=false;
+  while(hero.xp >= XP_PER_LEVEL(hero.level)){ hero.xp-=XP_PER_LEVEL(hero.level); hero.level++; hero.sp+=3; leveled=true; }
   return leveled;
 }
-function earnBadge(id){
-  if(!hero.badges.includes(id)) hero.badges.push(id);
-}
+function earnBadge(id){ if(!hero.badges.includes(id)) hero.badges.push(id); }
 
-// ═══════════════════════════════════════
-// TRIVIA ENGINE
-// ═══════════════════════════════════════
-function startTrivia(diff, mode='trivia'){
-  triviaState.diff = diff; triviaState.mode = mode;
-  triviaState.current = 0; triviaState.xpEarned = 0;
-  triviaState.streak = 0; triviaState.bestStreak = 0; triviaState.correct = 0;
-  triviaState.answered = false; triviaState.dots = [];
-
-  const allQ = [
-    ...QUESTIONS.basketball.filter(q => q.diff === diff),
-    ...QUESTIONS.football.filter(q => q.diff === diff),
-    ...QUESTIONS.soccer.filter(q => q.diff === diff)
-  ];
-  triviaState.questions = shuffle(allQ).slice(0, 5);
-
-  const dc = document.getElementById('progressDots'); dc.innerHTML = '';
-  for(let i = 0; i < 5; i++){
-    const d = document.createElement('div'); d.className = 'dot'; dc.appendChild(d); triviaState.dots.push(d);
+// ═══════════════════════════════════
+// TRIVIA (regular mode only)
+// ═══════════════════════════════════
+function startTrivia(diff){
+  triviaState = { diff, questions:[], current:0, xpEarned:0, streak:0, bestStreak:0, correct:0, timer:null, timeLeft:0, answered:false, dots:[] };
+  const allQ=[...QUESTIONS.basketball,...QUESTIONS.football,...QUESTIONS.soccer].filter(q=>q.diff===diff);
+  triviaState.questions=shuffle(allQ).slice(0,5);
+  const dc=document.getElementById('progressDots'); dc.innerHTML='';
+  for(let i=0;i<5;i++){
+    const d=document.createElement('div'); d.className='dot'; dc.appendChild(d); triviaState.dots.push(d);
   }
-
-  document.getElementById('t-xp').textContent     = 0;
-  document.getElementById('t-streak').textContent = 0;
-
-  if(mode === 'trivia') show('triviaScreen');
-  loadTriviaQuestion();
+  document.getElementById('t-xp').textContent=0;
+  document.getElementById('t-streak').textContent=0;
+  show('triviaScreen');
+  loadTriviaQ();
 }
 
-function detectSport(q){
-  const t = q.q.toLowerCase();
-  if(t.includes('basket') || t.includes('nba') || t.includes('dunk')) return 'basketball';
-  if(t.includes('football') || t.includes('nfl') || t.includes('touchdown') || t.includes('super bowl') || t.includes('quarterback') || t.includes('qb') || t.includes('linebacker')) return 'football';
-  return 'soccer';
-}
+function loadTriviaQ(){
+  triviaState.answered=false;
+  const q=triviaState.questions[triviaState.current];
+  document.getElementById('feedback').textContent='';
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('rewardPopup').style.display='none';
 
-function loadTriviaQuestion(){
-  triviaState.answered = false;
-  const q = triviaState.questions[triviaState.current];
-  document.getElementById('feedback').textContent = '';
-  document.getElementById('feedback').className   = 'feedback';
-  document.getElementById('rewardPopup').style.display = 'none';
+  const sport=detectSport(q);
+  const sportMap={basketball:'🏀 Basketball',football:'🏈 Football',soccer:'⚽ Soccer'};
+  const badge=document.getElementById('sportBadge');
+  badge.textContent=sportMap[sport]||'🎯'; badge.className='sport-badge badge-'+sport;
+  document.getElementById('diffBadge').textContent=q.diff;
+  document.getElementById('diffBadge').className='diff-badge diff-'+q.diff;
+  document.getElementById('qText').textContent=q.q;
+  document.getElementById('t-qnum').textContent=`${triviaState.current+1}/5`;
 
-  const sport = detectSport(q);
-  const sportMap = { basketball:'🏀 Basketball', football:'🏈 Football', soccer:'⚽ Soccer' };
-  const badge = document.getElementById('sportBadge');
-  badge.textContent = sportMap[sport] || '🎯 Sports';
-  badge.className   = 'sport-badge badge-' + sport;
-
-  const db = document.getElementById('diffBadge');
-  db.textContent = q.diff; db.className = 'diff-badge diff-' + q.diff;
-
-  document.getElementById('qText').textContent   = q.q;
-  document.getElementById('t-qnum').textContent  = `${triviaState.current + 1}/5`;
-
-  const grid = document.getElementById('answersGrid'); grid.innerHTML = '';
-  shuffle([0, 1, 2, 3]).forEach(i => {
-    const btn = document.createElement('button');
-    btn.className   = 'ans-btn';
-    btn.textContent = q.a[i];
-    btn.addEventListener('click', () => selectTriviaAnswer(i, btn));
+  const grid=document.getElementById('answersGrid'); grid.innerHTML='';
+  shuffle([0,1,2,3]).forEach(i=>{
+    const btn=document.createElement('button');
+    btn.className='ans-btn'; btn.textContent=q.a[i];
+    btn.addEventListener('click',()=>pickTriviaAnswer(i,btn));
     grid.appendChild(btn);
   });
 
   clearInterval(triviaState.timer);
-  triviaState.timeLeft = TIME_LIMITS[triviaState.diff];
-  updateTimerBar();
-  triviaState.timer = setInterval(() => {
+  triviaState.timeLeft=TIME_LIMITS[triviaState.diff];
+  updateTriviaTimer();
+  triviaState.timer=setInterval(()=>{
     triviaState.timeLeft--;
-    updateTimerBar();
-    if(triviaState.timeLeft <= 0){ clearInterval(triviaState.timer); triviaTimeUp(); }
-  }, 1000);
+    updateTriviaTimer();
+    if(triviaState.timeLeft<=0){ clearInterval(triviaState.timer); triviaTimeUp(); }
+  },1000);
 }
 
-function updateTimerBar(){
-  const pct = (triviaState.timeLeft / TIME_LIMITS[triviaState.diff]) * 100;
-  const bar  = document.getElementById('timerBar');
-  bar.style.width      = pct + '%';
-  bar.style.background = pct > 50 ? '#2ecc71' : pct > 25 ? '#f7c948' : '#e63946';
+function updateTriviaTimer(){
+  const pct=(triviaState.timeLeft/TIME_LIMITS[triviaState.diff])*100;
+  const bar=document.getElementById('timerBar');
+  bar.style.width=pct+'%';
+  bar.style.background=pct>50?'#2ecc71':pct>25?'#f7c948':'#e63946';
 }
 
-function selectTriviaAnswer(idx, btn){
+function pickTriviaAnswer(idx,btn){
   if(triviaState.answered) return;
-  triviaState.answered = true;
+  triviaState.answered=true;
   clearInterval(triviaState.timer);
+  const q=triviaState.questions[triviaState.current];
+  document.querySelectorAll('.ans-btn').forEach(b=>{ b.disabled=true; if(b.textContent===q.a[q.correct]) b.classList.add('correct'); });
 
-  const q = triviaState.questions[triviaState.current];
-  document.querySelectorAll('.ans-btn').forEach(b => {
-    b.disabled = true;
-    if(b.textContent === q.a[q.correct]) b.classList.add('correct');
-  });
-
-  if(idx === q.correct){
+  if(idx===q.correct){
     btn.classList.add('correct');
-    triviaState.correct++;
-    triviaState.streak++;
-    if(triviaState.streak > triviaState.bestStreak) triviaState.bestStreak = triviaState.streak;
-
-    const [mn, mx] = XP_RANGES[triviaState.diff];
-    let xp = Math.floor(mn + (mx - mn) * (triviaState.timeLeft / TIME_LIMITS[triviaState.diff]));
-    xp = Math.floor(xp * (1 + hero.stats.iq * 0.02));
-    if(triviaState.streak >= 3) xp = Math.floor(xp * (1 + hero.stats.clutch * 0.015));
-
-    triviaState.xpEarned += xp;
-    document.getElementById('t-xp').textContent     = triviaState.xpEarned;
-    document.getElementById('t-streak').textContent = triviaState.streak;
-    document.getElementById('feedback').textContent  = getRightMsg();
-    document.getElementById('feedback').className    = 'feedback correct';
+    triviaState.correct++; triviaState.streak++;
+    if(triviaState.streak>triviaState.bestStreak) triviaState.bestStreak=triviaState.streak;
+    const [mn,mx]=XP_RANGES[triviaState.diff];
+    let xp=Math.floor(mn+(mx-mn)*(triviaState.timeLeft/TIME_LIMITS[triviaState.diff]));
+    xp=Math.floor(xp*(1+hero.stats.iq*0.02));
+    if(triviaState.streak>=3) xp=Math.floor(xp*(1+hero.stats.clutch*0.015));
+    triviaState.xpEarned+=xp;
+    document.getElementById('t-xp').textContent=triviaState.xpEarned;
+    document.getElementById('t-streak').textContent=triviaState.streak;
+    document.getElementById('feedback').textContent=getRightMsg();
+    document.getElementById('feedback').className='feedback correct';
     triviaState.dots[triviaState.current].classList.add('correct');
-
-    const rp = document.getElementById('rewardPopup');
-    rp.textContent    = `+${xp} XP ${triviaState.streak >= 3 ? '🔥 STREAK BONUS!' : ''}`;
-    rp.style.display  = 'block';
-
+    const rp=document.getElementById('rewardPopup');
+    rp.textContent=`+${xp} XP ${triviaState.streak>=3?'🔥 STREAK BONUS!':''}`;
+    rp.style.display='block';
     earnBadge('first');
-
-    if(triviaState.mode === 'battle'){ setTimeout(() => resolveBattleTrivia(true), 1500); return; }
   } else {
     btn.classList.add('wrong');
-    triviaState.streak = 0;
-    document.getElementById('t-streak').textContent = 0;
-    document.getElementById('feedback').textContent = `❌ Answer: ${q.a[q.correct]}`;
-    document.getElementById('feedback').className   = 'feedback wrong';
+    triviaState.streak=0;
+    document.getElementById('t-streak').textContent=0;
+    document.getElementById('feedback').textContent=`❌ Answer: ${q.a[q.correct]}`;
+    document.getElementById('feedback').className='feedback wrong';
     triviaState.dots[triviaState.current].classList.add('wrong');
-    if(triviaState.mode === 'battle'){ setTimeout(() => resolveBattleTrivia(false), 1500); return; }
   }
-
-  setTimeout(() => advanceTrivia(), 1600);
+  setTimeout(()=>{ triviaState.current++; triviaState.current<5 ? loadTriviaQ() : endTrivia(); },1600);
 }
 
 function triviaTimeUp(){
   if(triviaState.answered) return;
-  triviaState.answered = true;
-  triviaState.streak   = 0;
-  document.getElementById('t-streak').textContent = 0;
-  const q = triviaState.questions[triviaState.current];
-  document.querySelectorAll('.ans-btn').forEach(b => {
-    b.disabled = true;
-    if(b.textContent === q.a[q.correct]) b.classList.add('correct');
-  });
-  document.getElementById('feedback').textContent = `⏰ Time! Answer: ${q.a[q.correct]}`;
-  document.getElementById('feedback').className   = 'feedback wrong';
+  triviaState.answered=true; triviaState.streak=0;
+  document.getElementById('t-streak').textContent=0;
+  const q=triviaState.questions[triviaState.current];
+  document.querySelectorAll('.ans-btn').forEach(b=>{ b.disabled=true; if(b.textContent===q.a[q.correct]) b.classList.add('correct'); });
+  document.getElementById('feedback').textContent=`⏰ Time! Answer: ${q.a[q.correct]}`;
+  document.getElementById('feedback').className='feedback wrong';
   triviaState.dots[triviaState.current].classList.add('wrong');
-  if(triviaState.mode === 'battle'){ setTimeout(() => resolveBattleTrivia(false), 1500); return; }
-  setTimeout(() => advanceTrivia(), 1600);
-}
-
-function advanceTrivia(){
-  triviaState.current++;
-  if(triviaState.current < 5) loadTriviaQuestion();
-  else endTrivia();
+  setTimeout(()=>{ triviaState.current++; triviaState.current<5 ? loadTriviaQ() : endTrivia(); },1600);
 }
 
 function endTrivia(){
-  if(triviaState.bestStreak >= 3) earnBadge('streak3');
-  if(triviaState.bestStreak >= 5) earnBadge('streak5');
-  if(triviaState.correct === 5)   earnBadge('perfect');
-
-  const leveled = gainXP(triviaState.xpEarned);
-
-  let statGains = [];
-  if(triviaState.correct >= 4){
-    const k = Object.keys(hero.stats)[Math.floor(Math.random() * 5)];
-    hero.stats[k]++;
-    statGains.push(`${STAT_META[k].icon} ${STAT_META[k].label} +1`);
-  }
-  if(triviaState.bestStreak >= 3){ hero.stats.clutch++; statGains.push('🎯 Clutch +1'); }
-  if(hero.level >= 5)  earnBadge('level5');
-  if(hero.level >= 10) earnBadge('level10');
-
-  document.getElementById('resultXP').textContent  = `+${triviaState.xpEarned} XP`;
-  const emojis = ['😅','😐','😊','🔥','⭐','🏆'];
-  document.getElementById('resultEmoji').textContent = emojis[triviaState.correct] || '⭐';
-  document.getElementById('resultMsg').textContent   =
-    triviaState.correct === 5
-      ? 'PERFECT! All 5 correct!'
-      : `${triviaState.correct}/5 correct — ${Math.round((triviaState.correct/5)*100)}% accuracy`;
-
-  const sc = document.getElementById('statGainCard');
+  if(triviaState.bestStreak>=3) earnBadge('streak3');
+  if(triviaState.bestStreak>=5) earnBadge('streak5');
+  if(triviaState.correct===5)   earnBadge('perfect');
+  const leveled=gainXP(triviaState.xpEarned);
+  let statGains=[];
+  if(triviaState.correct>=4){ const k=Object.keys(hero.stats)[Math.floor(Math.random()*5)]; hero.stats[k]++; statGains.push(`${STAT_META[k].icon} ${STAT_META[k].label} +1`); }
+  if(triviaState.bestStreak>=3){ hero.stats.clutch++; statGains.push('🎯 Clutch +1'); }
+  if(hero.level>=5)  earnBadge('level5');
+  if(hero.level>=10) earnBadge('level10');
+  document.getElementById('resultXP').textContent=`+${triviaState.xpEarned} XP`;
+  const emojis=['😅','😐','😊','🔥','⭐','🏆'];
+  document.getElementById('resultEmoji').textContent=emojis[triviaState.correct]||'⭐';
+  document.getElementById('resultMsg').textContent=
+    triviaState.correct===5?'PERFECT! All 5 correct!':`${triviaState.correct}/5 correct — ${Math.round((triviaState.correct/5)*100)}% accuracy`;
+  const sc=document.getElementById('statGainCard');
   if(statGains.length){
-    document.getElementById('statGainList').innerHTML = statGains.map(s => `<div style="color:#2ecc71;font-weight:700;font-size:.9rem;margin:4px 0">✅ ${s}</div>`).join('');
-    sc.style.display = 'block';
-  } else sc.style.display = 'none';
-
-  document.getElementById('playAgainBtn').onclick = () => { show('triviaScreen'); startTrivia(triviaState.diff); };
-
-  if(leveled){
-    setTimeout(() => showLevelUp(), 400);
-  } else {
-    renderHub();
-    show('resultsScreen');
-  }
+    document.getElementById('statGainList').innerHTML=statGains.map(s=>`<div style="color:#2ecc71;font-weight:700;font-size:.9rem;margin:4px 0">✅ ${s}</div>`).join('');
+    sc.style.display='block';
+  } else sc.style.display='none';
+  document.getElementById('playAgainBtn').onclick=()=>startTrivia(triviaState.diff);
+  if(leveled) setTimeout(()=>showLevelUp(),400);
+  else { renderHub(); show('resultsScreen'); }
 }
 
 function getRightMsg(){
-  const m = ['🎯 Nailed it!','🔥 Correct!','💪 Nice!','⚡ That\'s right!','🏆 Boom!','😤 Easy!'];
-  return m[Math.floor(Math.random() * m.length)];
+  const m=['🎯 Nailed it!','🔥 Correct!','💪 Nice!','⚡ Right!','🏆 Boom!','😤 Easy!'];
+  return m[Math.floor(Math.random()*m.length)];
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 // LEVEL UP
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 function showLevelUp(){
-  document.getElementById('lvlTitle').textContent = `LEVEL ${hero.level}!`;
-  document.getElementById('lvlSub').textContent   = `You reached Level ${hero.level}! Choose a perk:`;
-
-  const available = PERKS.filter(p => !hero.perks.includes(p.id));
-  const picks = shuffle(available).slice(0, Math.min(4, available.length));
-
-  const grid = document.getElementById('perkGrid'); grid.innerHTML = '';
-  picks.forEach(p => {
-    grid.innerHTML += `<div class="perk-card" onclick="choosePerk('${p.id}')">
-      <div class="perk-icon">${p.icon}</div>
-      <div class="perk-name">${p.name}</div>
-      <div class="perk-desc">${p.desc}</div>
-    </div>`;
+  document.getElementById('lvlTitle').textContent=`LEVEL ${hero.level}!`;
+  document.getElementById('lvlSub').textContent=`You reached Level ${hero.level}! Choose a perk:`;
+  const available=PERKS.filter(p=>!hero.perks.includes(p.id));
+  const picks=shuffle(available).slice(0,Math.min(4,available.length));
+  const grid=document.getElementById('perkGrid'); grid.innerHTML='';
+  picks.forEach(p=>{
+    grid.innerHTML+=`<div class="perk-card" onclick="choosePerk('${p.id}')">
+      <div class="perk-icon">${p.icon}</div><div class="perk-name">${p.name}</div><div class="perk-desc">${p.desc}</div></div>`;
   });
-
   show('levelupScreen');
 }
-
 function choosePerk(id){
-  const p = PERKS.find(x => x.id === id);
-  if(!p) return;
+  const p=PERKS.find(x=>x.id===id); if(!p) return;
   hero.perks.push(id);
-  if(p.stat === 'all'){ Object.keys(hero.stats).forEach(k => hero.stats[k] += p.val); }
-  else if(hero.stats[p.stat] !== undefined){ hero.stats[p.stat] += p.val; }
-  renderHub();
-  show('resultsScreen');
+  if(p.stat==='all') Object.keys(hero.stats).forEach(k=>hero.stats[k]+=p.val);
+  else if(hero.stats[p.stat]!==undefined) hero.stats[p.stat]+=p.val;
+  renderHub(); show('resultsScreen');
 }
 
-// ═══════════════════════════════════════
-// UPGRADE SCREEN
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
+// UPGRADE
+// ═══════════════════════════════════
 function renderUpgrade(){
-  document.getElementById('upgradeSpCount').textContent = hero.sp;
-  const grid = document.getElementById('upgradeGrid'); grid.innerHTML = '';
-  Object.keys(STAT_META).forEach(k => {
-    const m = STAT_META[k];
-    grid.innerHTML += `<div class="upgrade-row">
+  document.getElementById('upgradeSpCount').textContent=hero.sp;
+  const grid=document.getElementById('upgradeGrid'); grid.innerHTML='';
+  Object.keys(STAT_META).forEach(k=>{
+    const m=STAT_META[k];
+    grid.innerHTML+=`<div class="upgrade-row">
       <div class="up-val">${hero.stats[k]}</div>
       <div class="up-info">
         <div class="up-name">${m.icon} ${m.label}</div>
         <div class="up-desc">${m.desc}</div>
         <div class="up-bar-wrap"><div class="up-bar ${m.bar}" style="width:${statPct(hero.stats[k])}%"></div></div>
       </div>
-      <button class="up-btn" onclick="spendSP('${k}')" ${hero.sp < 1 ? 'disabled' : ''}>+1 (1 SP)</button>
+      <button class="up-btn" onclick="spendSP('${k}')" ${hero.sp<1?'disabled':''}>+1 (1 SP)</button>
     </div>`;
   });
 }
+function spendSP(stat){ if(hero.sp<1) return; hero.sp--; hero.stats[stat]++; renderUpgrade(); }
 
-function spendSP(stat){
-  if(hero.sp < 1) return;
-  hero.sp--;
-  hero.stats[stat]++;
-  renderUpgrade();
-}
-
-// ═══════════════════════════════════════
-// BATTLE
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
+// BATTLE — completely self-contained trivia
+// ═══════════════════════════════════
 function startBattle(){
-  const enemy   = shuffle(ENEMIES)[0];
-  const pMaxHp  = 100 + hero.stats.stamina * 2;
-  const eMaxHp  = enemy.hp;
+  const enemy=shuffle(ENEMIES)[0];
+  const pMaxHp=100+hero.stats.stamina*2;
+  battleState={ enemy:{...enemy}, pHp:pMaxHp, eHp:enemy.hp, pMaxHp, eMaxHp:enemy.hp };
 
-  battleState = { phase:'action', enemy:{...enemy}, pHp:pMaxHp, eHp:eMaxHp, pMaxHp, eMaxHp, action:'' };
-
-  document.getElementById('b-pAvatar').textContent = CLASS_AVATARS[hero.sport] || '🏀';
-  document.getElementById('b-pName').textContent   = hero.name;
-  document.getElementById('b-eAvatar').textContent = enemy.avatar;
-  document.getElementById('b-eName').textContent   = enemy.name;
-
+  document.getElementById('b-pAvatar').textContent=CLASS_AVATARS[hero.sport]||'🏀';
+  document.getElementById('b-pName').textContent=hero.name;
+  document.getElementById('b-eAvatar').textContent=enemy.avatar;
+  document.getElementById('b-eName').textContent=enemy.name;
   updateBattleHp();
-  document.getElementById('battleLog').innerHTML        = `⚔️ <b>${enemy.name}</b> challenges you! Show them what you've got!<br>`;
-  document.getElementById('battleActions').style.display = 'grid';
-  document.getElementById('battleTriviaZone').innerHTML  = '';
-  document.getElementById('battleEndZone').innerHTML     = '';
-
+  document.getElementById('battleLog').innerHTML=`⚔️ <b>${enemy.name}</b> challenges you!<br>`;
+  document.getElementById('battleActions').style.display='grid';
+  document.getElementById('battleTriviaZone').innerHTML='';
+  document.getElementById('battleEndZone').innerHTML='';
   show('battleScreen');
 }
 
 function updateBattleHp(){
-  const pp = clamp((battleState.pHp / battleState.pMaxHp) * 100, 0, 100);
-  const ep = clamp((battleState.eHp / battleState.eMaxHp) * 100, 0, 100);
-  document.getElementById('b-pHp').style.width    = pp + '%';
-  document.getElementById('b-eHp').style.width    = ep + '%';
-  document.getElementById('b-pHpText').textContent = `${Math.max(0, Math.round(battleState.pHp))}/${battleState.pMaxHp}`;
-  document.getElementById('b-eHpText').textContent = `${Math.max(0, Math.round(battleState.eHp))}/${battleState.eMaxHp}`;
+  const pp=clamp((battleState.pHp/battleState.pMaxHp)*100,0,100);
+  const ep=clamp((battleState.eHp/battleState.eMaxHp)*100,0,100);
+  document.getElementById('b-pHp').style.width=pp+'%';
+  document.getElementById('b-eHp').style.width=ep+'%';
+  document.getElementById('b-pHpText').textContent=`${Math.max(0,Math.round(battleState.pHp))}/${battleState.pMaxHp}`;
+  document.getElementById('b-eHpText').textContent=`${Math.max(0,Math.round(battleState.eHp))}/${battleState.eMaxHp}`;
 }
 
-function battleLog(msg){
-  const l = document.getElementById('battleLog');
-  l.innerHTML += msg + '<br>';
-  l.scrollTop  = l.scrollHeight;
-}
+function bLog(msg){ const l=document.getElementById('battleLog'); l.innerHTML+=msg+'<br>'; l.scrollTop=l.scrollHeight; }
 
 function battleAction(type){
-  battleState.action = type;
-  document.getElementById('battleActions').style.display = 'none';
+  document.getElementById('battleActions').style.display='none';
+  const diff = type==='special' ? 'hard' : 'medium';
+  const pool = [...QUESTIONS.basketball,...QUESTIONS.football,...QUESTIONS.soccer].filter(q=>q.diff===diff);
+  battleQ = { q:shuffle(pool)[0], answered:false, timer:null, timeLeft:TIME_LIMITS[diff], action:type, diff };
 
-  const allQ  = [...QUESTIONS.basketball, ...QUESTIONS.football, ...QUESTIONS.soccer];
-  const diff  = type === 'special' ? 'hard' : 'medium';
-  const pool  = allQ.filter(q => q.diff === diff);
-  triviaState.questions = [shuffle(pool)[0]];
-  triviaState.current   = 0;
-  triviaState.answered  = false;
-  triviaState.diff      = diff;
-  triviaState.mode      = 'battle';
-  triviaState.dots      = [];
+  const q=battleQ.q;
+  const sport=detectSport(q);
+  const sportBadgeClass='btv-badge badge-'+sport;
+  const sportLabel={basketball:'🏀 Basketball',football:'🏈 Football',soccer:'⚽ Soccer'}[sport]||'🎯';
 
-  const zone = document.getElementById('battleTriviaZone');
-  zone.innerHTML = `
-    <div class="card q-card" style="margin:10px 0">
-      <div style="color:#f7c948;font-weight:700;font-size:.8rem;margin-bottom:8px">
-        ${type === 'special' ? '🌟 SPECIAL MOVE — Hard Question!' : '⚡ ATTACK — Answer to deal damage!'}
-      </div>
-      <div id="sportBadge" class="sport-badge"></div>
-      <div id="diffBadge" class="diff-badge"></div>
-      <div class="q-text" id="qText"></div>
-    </div>
-    <div class="answers" id="answersGrid" style="margin-bottom:10px"></div>
-    <div class="feedback" id="feedback"></div>
-    <div class="reward-popup" id="rewardPopup"></div>
-    <div style="display:flex;gap:6px;justify-content:center" id="progressDots"></div>
-    <div class="timer-wrap" style="margin-top:10px"><div class="timer-bar" id="timerBar"></div></div>
-  `;
-  loadTriviaQuestion();
+  // Build the battle trivia UI with UNIQUE class-based elements (no duplicate IDs)
+  const zone=document.getElementById('battleTriviaZone');
+  zone.innerHTML=`
+    <div class="btv-card">
+      <div class="btv-label">${type==='special'?'🌟 SPECIAL MOVE — Hard Question!':'⚡ ATTACK — Answer correctly to deal damage!'}</div>
+      <div class="${sportBadgeClass}">${sportLabel}</div>
+      <div class="btv-qtext" id="btv-qtext">${q.q}</div>
+      <div class="btv-answers" id="btv-answers"></div>
+      <div class="btv-feedback" id="btv-feedback"></div>
+      <div class="btv-timer-wrap"><div class="btv-timer-bar" id="btv-timer-bar"></div></div>
+    </div>`;
+
+  // Build answer buttons
+  const grid=document.getElementById('btv-answers');
+  shuffle([0,1,2,3]).forEach(i=>{
+    const btn=document.createElement('button');
+    btn.className='btv-ans'; btn.textContent=q.a[i];
+    btn.addEventListener('click',()=>pickBattleAnswer(i,btn));
+    grid.appendChild(btn);
+  });
+
+  // Start timer
+  updateBattleTimer();
+  battleQ.timer=setInterval(()=>{
+    battleQ.timeLeft--;
+    updateBattleTimer();
+    if(battleQ.timeLeft<=0){ clearInterval(battleQ.timer); battleTimerUp(); }
+  },1000);
 }
 
-function resolveBattleTrivia(correct){
-  document.getElementById('battleTriviaZone').innerHTML = '';
-  if(correct){
-    let dmg = Math.floor((5 + hero.stats.power) * (battleState.action === 'special' ? 2 : 1));
-    dmg = Math.floor(dmg * (1 + hero.stats.clutch * .02));
-    battleState.eHp -= dmg;
-    battleLog(`⚡ <b>${hero.name}</b> deals <b style="color:#f7c948">${dmg} damage</b>!`);
+function updateBattleTimer(){
+  const pct=(battleQ.timeLeft/TIME_LIMITS[battleQ.diff])*100;
+  const bar=document.getElementById('btv-timer-bar');
+  if(!bar) return;
+  bar.style.width=pct+'%';
+  bar.style.background=pct>50?'#2ecc71':pct>25?'#f7c948':'#e63946';
+}
+
+function pickBattleAnswer(idx,btn){
+  if(battleQ.answered) return;
+  battleQ.answered=true;
+  clearInterval(battleQ.timer);
+  const q=battleQ.q;
+
+  document.querySelectorAll('.btv-ans').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===q.a[q.correct]) b.classList.add('correct');
+  });
+
+  const fb=document.getElementById('btv-feedback');
+  if(idx===q.correct){
+    btn.classList.add('correct');
+    if(fb){ fb.textContent='✅ Correct!'; fb.className='btv-feedback correct'; }
+    setTimeout(()=>resolveBattle(true),1400);
   } else {
-    battleLog(`😬 You missed the question — no damage!`);
+    btn.classList.add('wrong');
+    if(fb){ fb.textContent=`❌ Answer: ${q.a[q.correct]}`; fb.className='btv-feedback wrong'; }
+    setTimeout(()=>resolveBattle(false),1400);
   }
-  setTimeout(() => {
-    if(battleState.eHp > 0){
-      const dodgeChance = hero.stats.speed * 0.02;
-      if(Math.random() < dodgeChance){
-        battleLog(`💨 You dodged the attack! (Speed ${hero.stats.speed})`);
+}
+
+function battleTimerUp(){
+  if(battleQ.answered) return;
+  battleQ.answered=true;
+  const q=battleQ.q;
+  document.querySelectorAll('.btv-ans').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===q.a[q.correct]) b.classList.add('correct');
+  });
+  const fb=document.getElementById('btv-feedback');
+  if(fb){ fb.textContent=`⏰ Time! Answer: ${q.a[q.correct]}`; fb.className='btv-feedback wrong'; }
+  setTimeout(()=>resolveBattle(false),1400);
+}
+
+function resolveBattle(correct){
+  document.getElementById('battleTriviaZone').innerHTML='';
+  if(correct){
+    let dmg=Math.floor((5+hero.stats.power)*(battleQ.action==='special'?2:1));
+    dmg=Math.floor(dmg*(1+hero.stats.clutch*.02));
+    battleState.eHp-=dmg;
+    bLog(`⚡ <b>${hero.name}</b> deals <b style="color:#f7c948">${dmg} damage</b>!`);
+  } else {
+    bLog(`😬 Missed the question — no damage!`);
+  }
+  setTimeout(()=>{
+    if(battleState.eHp>0){
+      if(Math.random()<hero.stats.speed*0.02){
+        bLog(`💨 You dodged the attack! (Speed ${hero.stats.speed})`);
       } else {
-        const eDmg = battleState.enemy.power;
-        battleState.pHp -= eDmg;
-        battleLog(`💥 <b>${battleState.enemy.name}</b> hits for <b style="color:#e63946">${eDmg} damage</b>!`);
+        const eDmg=battleState.enemy.power;
+        battleState.pHp-=eDmg;
+        bLog(`💥 <b>${battleState.enemy.name}</b> hits for <b style="color:#e63946">${eDmg} damage</b>!`);
       }
     }
     updateBattleHp();
-    if(battleState.pHp <= 0 || battleState.eHp <= 0) endBattle();
-    else document.getElementById('battleActions').style.display = 'grid';
-  }, 600);
+    if(battleState.pHp<=0||battleState.eHp<=0) endBattle();
+    else document.getElementById('battleActions').style.display='grid';
+  },600);
 }
 
 function endBattle(){
-  const won = battleState.eHp <= 0;
-  gainXP(won ? 80 : 20);
+  const won=battleState.eHp<=0;
+  gainXP(won?80:20);
   if(won) earnBadge('battle');
-  battleLog(won
+  bLog(won
     ? `🏆 <b>VICTORY!</b> You defeated ${battleState.enemy.name}! +80 XP`
-    : `💀 <b>DEFEAT.</b> ${battleState.enemy.name} wins this time. +20 XP for trying!`
-  );
-  document.getElementById('battleEndZone').innerHTML = `
+    : `💀 <b>DEFEAT.</b> ${battleState.enemy.name} wins. +20 XP for trying!`);
+  document.getElementById('battleEndZone').innerHTML=`
     <div style="margin-top:14px;display:flex;gap:12px;justify-content:center">
-      <button class="btn btn-gold" onclick="startBattle()">⚔️ Battle Again</button>
+      <button class="btn btn-gold"    onclick="startBattle()">⚔️ Battle Again</button>
       <button class="btn btn-outline" onclick="show('hubScreen');renderHub()">🏠 Hub</button>
     </div>`;
   renderHub();
 }
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 // INIT
-// ═══════════════════════════════════════
+// ═══════════════════════════════════
 show('introScreen');
 </script>
 </body>
