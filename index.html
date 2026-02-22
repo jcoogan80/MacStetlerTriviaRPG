@@ -209,8 +209,6 @@ body::before {
   font-size:.85rem; font-weight:700; transition:all .2s; text-align:center;
 }
 .battle-action:hover { border-color:#f7c948; background:rgba(247,201,72,.1); }
-
-/* Battle trivia zone - self-contained styles */
 .btv-card {
   background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
   border-radius:20px; padding:20px; width:100%;
@@ -233,7 +231,6 @@ body::before {
 .btv-feedback.wrong   { color:#e63946; }
 .btv-timer-wrap { width:100%; height:7px; background:rgba(255,255,255,.1); border-radius:4px; overflow:hidden; margin-top:10px; }
 .btv-timer-bar  { height:100%; border-radius:4px; transition:width 1s linear, background .5s; background:#2ecc71; }
-
 .progress-dots { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; }
 .dot { width:13px; height:13px; border-radius:50%; background:rgba(255,255,255,.15); transition:background .3s; }
 .dot.correct { background:#2ecc71; }
@@ -441,7 +438,6 @@ body::before {
       </div>
     </div>
     <div class="battle-log" id="battleLog"></div>
-    <!-- Battle trivia lives entirely here with its own unique IDs -->
     <div id="battleTriviaZone"></div>
     <div class="battle-actions" id="battleActions" style="display:none">
       <button class="battle-action" onclick="battleAction('attack')">⚡ Attack<br><small>Answer trivia for damage</small></button>
@@ -451,11 +447,11 @@ body::before {
   </div>
 </div>
 
-</div>
+</div><!-- /wrap -->
 
 <script>
 // ═══════════════════════════════════
-// DATA
+// DATA — every question now has a sport property
 // ═══════════════════════════════════
 const SPORT_BONUSES = {
   basketball:{ speed:3, power:0, iq:0, stamina:0, clutch:2 },
@@ -475,17 +471,18 @@ const STAT_META = {
   stamina:{ label:'Stamina', icon:'❤️', bar:'bar-stamina', desc:'HP pool in battles' },
   clutch: { label:'Clutch',  icon:'🎯', bar:'bar-clutch',  desc:'Streak bonuses & hard rewards' },
 };
+const SPORT_LABELS = { basketball:'🏀 Basketball', football:'🏈 Football', soccer:'⚽ Soccer' };
 const XP_PER_LEVEL = lvl => 100 + lvl * 50;
 const TIME_LIMITS  = { easy:20, medium:15, hard:10 };
 const XP_RANGES    = { easy:[10,20], medium:[20,35], hard:[35,60] };
 
 const PERKS = [
-  { id:'iron_will',   name:'Iron Will',   icon:'🛡️', desc:'Stamina +2, Max HP increases',      stat:'stamina', val:2 },
-  { id:'quick_hands', name:'Quick Hands', icon:'⚡', desc:'Speed +3, timer feels slower',       stat:'speed',   val:3 },
-  { id:'big_brain',   name:'Big Brain',   icon:'🧠', desc:'IQ +3, earn 10% bonus XP always',   stat:'iq',      val:3 },
-  { id:'clutch_gene', name:'Clutch Gene', icon:'🎯', desc:'Clutch +3, streaks give more XP',   stat:'clutch',  val:3 },
-  { id:'beast_mode',  name:'Beast Mode',  icon:'💪', desc:'Power +3, attacks hit harder',       stat:'power',   val:3 },
-  { id:'unstoppable', name:'Unstoppable', icon:'🔥', desc:'All stats +1',                       stat:'all',     val:1 },
+  { id:'iron_will',   name:'Iron Will',   icon:'🛡️', desc:'Stamina +2, Max HP increases',    stat:'stamina', val:2 },
+  { id:'quick_hands', name:'Quick Hands', icon:'⚡', desc:'Speed +3, timer feels slower',     stat:'speed',   val:3 },
+  { id:'big_brain',   name:'Big Brain',   icon:'🧠', desc:'IQ +3, earn 10% bonus XP always', stat:'iq',      val:3 },
+  { id:'clutch_gene', name:'Clutch Gene', icon:'🎯', desc:'Clutch +3, streaks give more XP', stat:'clutch',  val:3 },
+  { id:'beast_mode',  name:'Beast Mode',  icon:'💪', desc:'Power +3, attacks hit harder',     stat:'power',   val:3 },
+  { id:'unstoppable', name:'Unstoppable', icon:'🔥', desc:'All stats +1',                     stat:'all',     val:1 },
 ];
 const ENEMIES = [
   { name:'Street Baller',  avatar:'🏀', hp:80,  power:6  },
@@ -496,59 +493,63 @@ const ENEMIES = [
   { name:'Speed Demon',    avatar:'⚡', hp:70,  power:6  },
 ];
 
-const QUESTIONS = {
-  basketball:[
-    {q:"How many points is a three-pointer worth?",                     a:["3","2","4","1"],                                                                             correct:0,diff:"easy"},
-    {q:"How many players are on the court per team?",                   a:["5","6","4","7"],                                                                             correct:0,diff:"easy"},
-    {q:"Which team did LeBron win his FIRST championship with?",        a:["Miami Heat","Cleveland Cavaliers","Los Angeles Lakers","Chicago Bulls"],                      correct:0,diff:"easy"},
-    {q:"What is the NBA shot clock limit?",                             a:["24 seconds","30 seconds","20 seconds","35 seconds"],                                         correct:0,diff:"easy"},
-    {q:"How tall is a regulation NBA hoop?",                            a:["10 feet","9 feet","11 feet","12 feet"],                                                      correct:0,diff:"easy"},
-    {q:"Who holds the NBA single-game scoring record?",                 a:["Wilt Chamberlain","Kobe Bryant","LeBron James","Michael Jordan"],                            correct:0,diff:"medium"},
-    {q:"Which player is nicknamed 'The Greek Freak'?",                  a:["Giannis Antetokounmpo","Nikola Jokic","Luka Doncic","Kristaps Porzingis"],                   correct:0,diff:"medium"},
-    {q:"How many Bulls championships did Michael Jordan win?",          a:["6","5","4","7"],                                                                             correct:0,diff:"medium"},
-    {q:"Which team has won the most NBA championships?",                a:["Boston Celtics","Los Angeles Lakers","Chicago Bulls","Golden State Warriors"],                correct:0,diff:"medium"},
-    {q:"How many career MVP awards did Kareem Abdul-Jabbar win?",       a:["6","5","4","3"],                                                                             correct:0,diff:"medium"},
-    {q:"How many points did Wilt Chamberlain score in his record game?",a:["100","98","102","95"],                                                                       correct:0,diff:"hard"},
-    {q:"What year was the NBA founded?",                                a:["1946","1950","1940","1955"],                                                                 correct:0,diff:"hard"},
-    {q:"Stephen Curry's record single-season three-pointer count?",    a:["402","387","368","415"],                                                                     correct:0,diff:"hard"},
-    {q:"Which country won the 1936 Olympic basketball gold medal?",     a:["United States","Canada","Soviet Union","Brazil"],                                            correct:0,diff:"hard"},
-    {q:"Who won the first NBA Slam Dunk Contest in 1976?",              a:["Julius Erving","David Thompson","Artis Gilmore","George Gervin"],                           correct:0,diff:"hard"},
-  ],
-  football:[
-    {q:"How many points does a touchdown score?",                       a:["6","7","8","5"],                                                                             correct:0,diff:"easy"},
-    {q:"How many players per team on the field in NFL?",                a:["11","12","10","9"],                                                                          correct:0,diff:"easy"},
-    {q:"Who won Super Bowl LVIII in 2024?",                             a:["Kansas City Chiefs","San Francisco 49ers","Baltimore Ravens","Buffalo Bills"],                correct:0,diff:"easy"},
-    {q:"How many downs to move 10 yards?",                              a:["4","3","5","6"],                                                                             correct:0,diff:"easy"},
-    {q:"What does NFL stand for?",                                      a:["National Football League","National Field League","North Football League","National Finals League"],correct:0,diff:"easy"},
-    {q:"Which QB has won the most Super Bowls?",                        a:["Tom Brady","Joe Montana","Terry Bradshaw","Patrick Mahomes"],                                 correct:0,diff:"medium"},
-    {q:"How long is an NFL field end zone to end zone?",                a:["100 yards","110 yards","120 yards","90 yards"],                                              correct:0,diff:"medium"},
-    {q:"Name of the Super Bowl trophy?",                                a:["Vince Lombardi Trophy","George Halas Trophy","Pete Rozelle Trophy","Walter Payton Trophy"],  correct:0,diff:"medium"},
-    {q:"Which team plays at Lambeau Field?",                            a:["Green Bay Packers","Chicago Bears","Minnesota Vikings","Detroit Lions"],                     correct:0,diff:"medium"},
-    {q:"How many points is a safety worth?",                            a:["2","1","3","6"],                                                                             correct:0,diff:"medium"},
-    {q:"Who holds the NFL record for most career passing touchdowns?",  a:["Tom Brady","Peyton Manning","Drew Brees","Brett Favre"],                                     correct:0,diff:"hard"},
-    {q:"LaDainian Tomlinson's single-season rushing TD record?",        a:["28","24","26","30"],                                                                         correct:0,diff:"hard"},
-    {q:"City where the first Super Bowl was played?",                   a:["Los Angeles","New Orleans","Miami","Green Bay"],                                             correct:0,diff:"hard"},
-    {q:"What pick was Patrick Mahomes drafted in 2017?",                a:["10th","15th","7th","22nd"],                                                                  correct:0,diff:"hard"},
-    {q:"Score of the highest-scoring Super Bowl ever?",                 a:["55-10","49-26","43-8","41-33"],                                                              correct:0,diff:"hard"},
-  ],
-  soccer:[
-    {q:"How many players per team on a soccer field?",                  a:["11","10","12","9"],                                                                          correct:0,diff:"easy"},
-    {q:"How long is a standard soccer match?",                          a:["90 minutes","80 minutes","100 minutes","60 minutes"],                                        correct:0,diff:"easy"},
-    {q:"Which country has won the most FIFA World Cups?",               a:["Brazil","Germany","Argentina","Italy"],                                                      correct:0,diff:"easy"},
-    {q:"What card sends a player off the field?",                       a:["Red","Yellow","Orange","Black"],                                                             correct:0,diff:"easy"},
-    {q:"Who won 8 Ballon d'Or awards?",                                 a:["Lionel Messi","Cristiano Ronaldo","Pelé","Zinedine Zidane"],                                 correct:0,diff:"easy"},
-    {q:"Which club has the most Champions League titles?",              a:["Real Madrid","FC Barcelona","Bayern Munich","AC Milan"],                                     correct:0,diff:"medium"},
-    {q:"What is a 'hat trick'?",                                        a:["3 goals by one player","A penalty kick","A header goal","Two goals in a row"],               correct:0,diff:"medium"},
-    {q:"Host country of the 2022 FIFA World Cup?",                      a:["Qatar","Saudi Arabia","UAE","Bahrain"],                                                      correct:0,diff:"medium"},
-    {q:"What is 'offside' in soccer?",                                  a:["Illegal position near opponent's goal","A foul tackle","Using hands","Delay of game"],       correct:0,diff:"medium"},
-    {q:"Who won the Golden Boot at the 2022 World Cup?",                a:["Kylian Mbappé","Lionel Messi","Olivier Giroud","Richarlison"],                               correct:0,diff:"medium"},
-    {q:"Miroslav Klose's all-time World Cup goal record?",              a:["16","15","14","17"],                                                                         correct:0,diff:"hard"},
-    {q:"What year did the Premier League begin?",                       a:["1992","1990","1988","1995"],                                                                 correct:0,diff:"hard"},
-    {q:"Goalkeeper with most Premier League clean sheets?",             a:["Petr Cech","Edwin van der Sar","David James","Mark Schwarzer"],                              correct:0,diff:"hard"},
-    {q:"Who scored the 'Hand of God' goal in 1986?",                    a:["Diego Maradona","Pelé","Roberto Baggio","Johan Cruyff"],                                     correct:0,diff:"hard"},
-    {q:"Who won the first FIFA World Cup in 1930?",                     a:["Uruguay","Brazil","Argentina","Italy"],                                                      correct:0,diff:"hard"},
-  ]
-};
+// ── Each question now has sport:'basketball'|'football'|'soccer' ──
+const QUESTIONS = [
+  // BASKETBALL – EASY
+  {sport:'basketball', diff:'easy', q:"How many points is a three-pointer worth?",                     a:["3","2","4","1"],                                                                              correct:0},
+  {sport:'basketball', diff:'easy', q:"How many players are on the court per team in basketball?",     a:["5","6","4","7"],                                                                              correct:0},
+  {sport:'basketball', diff:'easy', q:"Which team did LeBron win his FIRST championship with?",        a:["Miami Heat","Cleveland Cavaliers","Los Angeles Lakers","Chicago Bulls"],                      correct:0},
+  {sport:'basketball', diff:'easy', q:"What is the NBA shot clock limit?",                             a:["24 seconds","30 seconds","20 seconds","35 seconds"],                                         correct:0},
+  {sport:'basketball', diff:'easy', q:"How tall is a regulation NBA hoop?",                            a:["10 feet","9 feet","11 feet","12 feet"],                                                      correct:0},
+  // BASKETBALL – MEDIUM
+  {sport:'basketball', diff:'medium', q:"Who holds the NBA single-game scoring record?",               a:["Wilt Chamberlain","Kobe Bryant","LeBron James","Michael Jordan"],                            correct:0},
+  {sport:'basketball', diff:'medium', q:"Which player is nicknamed 'The Greek Freak'?",                a:["Giannis Antetokounmpo","Nikola Jokic","Luka Doncic","Kristaps Porzingis"],                   correct:0},
+  {sport:'basketball', diff:'medium', q:"How many championships did Michael Jordan win with the Bulls?",a:["6","5","4","7"],                                                                             correct:0},
+  {sport:'basketball', diff:'medium', q:"Which team has won the most NBA championships?",              a:["Boston Celtics","Los Angeles Lakers","Chicago Bulls","Golden State Warriors"],                correct:0},
+  {sport:'basketball', diff:'medium', q:"How many career MVP awards did Kareem Abdul-Jabbar win?",     a:["6","5","4","3"],                                                                             correct:0},
+  // BASKETBALL – HARD
+  {sport:'basketball', diff:'hard', q:"How many points did Wilt Chamberlain score in his record game?",a:["100","98","102","95"],                                                                       correct:0},
+  {sport:'basketball', diff:'hard', q:"What year was the NBA founded?",                                a:["1946","1950","1940","1955"],                                                                 correct:0},
+  {sport:'basketball', diff:'hard', q:"Stephen Curry's record single-season three-pointer count?",     a:["402","387","368","415"],                                                                     correct:0},
+  {sport:'basketball', diff:'hard', q:"Which country won the 1936 Olympic basketball gold medal?",     a:["United States","Canada","Soviet Union","Brazil"],                                            correct:0},
+  {sport:'basketball', diff:'hard', q:"Who won the first NBA Slam Dunk Contest in 1976?",              a:["Julius Erving","David Thompson","Artis Gilmore","George Gervin"],                           correct:0},
+  // FOOTBALL – EASY
+  {sport:'football', diff:'easy', q:"How many points does a touchdown score?",                         a:["6","7","8","5"],                                                                             correct:0},
+  {sport:'football', diff:'easy', q:"How many players per team are on the field in the NFL?",          a:["11","12","10","9"],                                                                          correct:0},
+  {sport:'football', diff:'easy', q:"Who won Super Bowl LVIII in 2024?",                               a:["Kansas City Chiefs","San Francisco 49ers","Baltimore Ravens","Buffalo Bills"],                correct:0},
+  {sport:'football', diff:'easy', q:"How many downs does an offense get to move 10 yards?",            a:["4","3","5","6"],                                                                             correct:0},
+  {sport:'football', diff:'easy', q:"What does NFL stand for?",                                        a:["National Football League","National Field League","North Football League","National Finals League"], correct:0},
+  // FOOTBALL – MEDIUM
+  {sport:'football', diff:'medium', q:"Which QB has won the most Super Bowls?",                        a:["Tom Brady","Joe Montana","Terry Bradshaw","Patrick Mahomes"],                                 correct:0},
+  {sport:'football', diff:'medium', q:"How long is an NFL field from end zone to end zone?",           a:["100 yards","110 yards","120 yards","90 yards"],                                              correct:0},
+  {sport:'football', diff:'medium', q:"What is the name of the Super Bowl trophy?",                    a:["Vince Lombardi Trophy","George Halas Trophy","Pete Rozelle Trophy","Walter Payton Trophy"],  correct:0},
+  {sport:'football', diff:'medium', q:"Which NFL team plays their home games at Lambeau Field?",       a:["Green Bay Packers","Chicago Bears","Minnesota Vikings","Detroit Lions"],                     correct:0},
+  {sport:'football', diff:'medium', q:"How many points is a safety worth in football?",                a:["2","1","3","6"],                                                                             correct:0},
+  // FOOTBALL – HARD
+  {sport:'football', diff:'hard', q:"Who holds the NFL record for most career passing touchdowns?",    a:["Tom Brady","Peyton Manning","Drew Brees","Brett Favre"],                                     correct:0},
+  {sport:'football', diff:'hard', q:"LaDainian Tomlinson's single-season rushing TD record?",          a:["28","24","26","30"],                                                                         correct:0},
+  {sport:'football', diff:'hard', q:"In what city was the very first Super Bowl played?",              a:["Los Angeles","New Orleans","Miami","Green Bay"],                                             correct:0},
+  {sport:'football', diff:'hard', q:"What overall pick was Patrick Mahomes drafted in 2017?",          a:["10th","15th","7th","22nd"],                                                                  correct:0},
+  {sport:'football', diff:'hard', q:"What was the final score of the highest-scoring Super Bowl ever?",a:["55-10","49-26","43-8","41-33"],                                                              correct:0},
+  // SOCCER – EASY
+  {sport:'soccer', diff:'easy', q:"How many players per team are on a soccer field?",                  a:["11","10","12","9"],                                                                          correct:0},
+  {sport:'soccer', diff:'easy', q:"How long is a standard soccer match?",                              a:["90 minutes","80 minutes","100 minutes","60 minutes"],                                        correct:0},
+  {sport:'soccer', diff:'easy', q:"Which country has won the most FIFA World Cups?",                   a:["Brazil","Germany","Argentina","Italy"],                                                      correct:0},
+  {sport:'soccer', diff:'easy', q:"What color card is shown to send a soccer player off the field?",   a:["Red","Yellow","Orange","Black"],                                                             correct:0},
+  {sport:'soccer', diff:'easy', q:"Who won 8 Ballon d'Or awards — the most all time?",                 a:["Lionel Messi","Cristiano Ronaldo","Pelé","Zinedine Zidane"],                                 correct:0},
+  // SOCCER – MEDIUM
+  {sport:'soccer', diff:'medium', q:"Which club has won the most UEFA Champions League titles?",       a:["Real Madrid","FC Barcelona","Bayern Munich","AC Milan"],                                     correct:0},
+  {sport:'soccer', diff:'medium', q:"What is a 'hat trick' in soccer?",                               a:["3 goals by one player","A penalty kick","A header goal","Two goals in a row"],               correct:0},
+  {sport:'soccer', diff:'medium', q:"Which country hosted the 2022 FIFA World Cup?",                   a:["Qatar","Saudi Arabia","UAE","Bahrain"],                                                      correct:0},
+  {sport:'soccer', diff:'medium', q:"What does 'offside' mean in soccer?",                             a:["Illegal position near opponent's goal","A foul tackle","Using hands","Delay of game"],       correct:0},
+  {sport:'soccer', diff:'medium', q:"Who won the Golden Boot at the 2022 World Cup?",                  a:["Kylian Mbappé","Lionel Messi","Olivier Giroud","Richarlison"],                               correct:0},
+  // SOCCER – HARD
+  {sport:'soccer', diff:'hard', q:"What is Miroslav Klose's all-time World Cup goals record?",         a:["16","15","14","17"],                                                                         correct:0},
+  {sport:'soccer', diff:'hard', q:"What year did the English Premier League begin?",                   a:["1992","1990","1988","1995"],                                                                 correct:0},
+  {sport:'soccer', diff:'hard', q:"Which goalkeeper holds the record for most Premier League clean sheets?", a:["Petr Cech","Edwin van der Sar","David James","Mark Schwarzer"],                       correct:0},
+  {sport:'soccer', diff:'hard', q:"Who scored the famous 'Hand of God' goal in the 1986 World Cup?",  a:["Diego Maradona","Pelé","Roberto Baggio","Johan Cruyff"],                                     correct:0},
+  {sport:'soccer', diff:'hard', q:"Which country won the very first FIFA World Cup in 1930?",          a:["Uruguay","Brazil","Argentina","Italy"],                                                      correct:0},
+];
 
 // ═══════════════════════════════════
 // STATE
@@ -564,8 +565,7 @@ let triviaState = {
   xpEarned:0, streak:0, bestStreak:0, correct:0,
   timer:null, timeLeft:0, answered:false, dots:[]
 };
-// Battle keeps its own separate question + timer state
-let battleQ = { q:null, answered:false, timer:null, timeLeft:0, action:'' };
+let battleQ    = { q:null, answered:false, timer:null, timeLeft:0, action:'', diff:'medium' };
 let battleState = { enemy:null, pHp:0, eHp:0, pMaxHp:0, eMaxHp:0 };
 
 // ═══════════════════════════════════
@@ -579,11 +579,11 @@ function show(id){
 function shuffle(arr){ return [...arr].sort(() => Math.random() - .5); }
 function clamp(v,mn,mx){ return Math.max(mn, Math.min(mx, v)); }
 function statPct(v){ return clamp((v/30)*100, 4, 100); }
-function detectSport(q){
-  const t = q.q.toLowerCase();
-  if(t.includes('basket')||t.includes('nba')||t.includes('dunk')) return 'basketball';
-  if(t.includes('football')||t.includes('nfl')||t.includes('touchdown')||t.includes('super bowl')||t.includes('linebacker')) return 'football';
-  return 'soccer';
+
+// Sport badge helper — uses the question's own sport property
+function setSportBadge(el, sport){
+  el.textContent  = SPORT_LABELS[sport] || '🎯 Sports';
+  el.className    = 'sport-badge badge-' + sport;
 }
 
 // ═══════════════════════════════════
@@ -661,12 +661,12 @@ function gainXP(amount){
 function earnBadge(id){ if(!hero.badges.includes(id)) hero.badges.push(id); }
 
 // ═══════════════════════════════════
-// TRIVIA (regular mode only)
+// TRIVIA
 // ═══════════════════════════════════
 function startTrivia(diff){
   triviaState = { diff, questions:[], current:0, xpEarned:0, streak:0, bestStreak:0, correct:0, timer:null, timeLeft:0, answered:false, dots:[] };
-  const allQ=[...QUESTIONS.basketball,...QUESTIONS.football,...QUESTIONS.soccer].filter(q=>q.diff===diff);
-  triviaState.questions=shuffle(allQ).slice(0,5);
+  triviaState.questions = shuffle(QUESTIONS.filter(q => q.diff === diff)).slice(0,5);
+
   const dc=document.getElementById('progressDots'); dc.innerHTML='';
   for(let i=0;i<5;i++){
     const d=document.createElement('div'); d.className='dot'; dc.appendChild(d); triviaState.dots.push(d);
@@ -680,18 +680,17 @@ function startTrivia(diff){
 function loadTriviaQ(){
   triviaState.answered=false;
   const q=triviaState.questions[triviaState.current];
+
   document.getElementById('feedback').textContent='';
   document.getElementById('feedback').className='feedback';
   document.getElementById('rewardPopup').style.display='none';
 
-  const sport=detectSport(q);
-  const sportMap={basketball:'🏀 Basketball',football:'🏈 Football',soccer:'⚽ Soccer'};
-  const badge=document.getElementById('sportBadge');
-  badge.textContent=sportMap[sport]||'🎯'; badge.className='sport-badge badge-'+sport;
-  document.getElementById('diffBadge').textContent=q.diff;
-  document.getElementById('diffBadge').className='diff-badge diff-'+q.diff;
-  document.getElementById('qText').textContent=q.q;
-  document.getElementById('t-qnum').textContent=`${triviaState.current+1}/5`;
+  // ── Use q.sport directly — always accurate ──
+  setSportBadge(document.getElementById('sportBadge'), q.sport);
+  document.getElementById('diffBadge').textContent = q.diff;
+  document.getElementById('diffBadge').className   = 'diff-badge diff-' + q.diff;
+  document.getElementById('qText').textContent     = q.q;
+  document.getElementById('t-qnum').textContent    = `${triviaState.current+1}/5`;
 
   const grid=document.getElementById('answersGrid'); grid.innerHTML='';
   shuffle([0,1,2,3]).forEach(i=>{
@@ -702,7 +701,7 @@ function loadTriviaQ(){
   });
 
   clearInterval(triviaState.timer);
-  triviaState.timeLeft=TIME_LIMITS[triviaState.diff];
+  triviaState.timeLeft=TIME_LIMITS[diff];
   updateTriviaTimer();
   triviaState.timer=setInterval(()=>{
     triviaState.timeLeft--;
@@ -710,6 +709,9 @@ function loadTriviaQ(){
     if(triviaState.timeLeft<=0){ clearInterval(triviaState.timer); triviaTimeUp(); }
   },1000);
 }
+
+// tiny alias so loadTriviaQ can reference triviaState.diff properly
+Object.defineProperty(window,'diff',{ get(){ return triviaState.diff; } });
 
 function updateTriviaTimer(){
   const pct=(triviaState.timeLeft/TIME_LIMITS[triviaState.diff])*100;
@@ -841,13 +843,12 @@ function renderUpgrade(){
 function spendSP(stat){ if(hero.sp<1) return; hero.sp--; hero.stats[stat]++; renderUpgrade(); }
 
 // ═══════════════════════════════════
-// BATTLE — completely self-contained trivia
+// BATTLE
 // ═══════════════════════════════════
 function startBattle(){
   const enemy=shuffle(ENEMIES)[0];
   const pMaxHp=100+hero.stats.stamina*2;
   battleState={ enemy:{...enemy}, pHp:pMaxHp, eHp:enemy.hp, pMaxHp, eMaxHp:enemy.hp };
-
   document.getElementById('b-pAvatar').textContent=CLASS_AVATARS[hero.sport]||'🏀';
   document.getElementById('b-pName').textContent=hero.name;
   document.getElementById('b-eAvatar').textContent=enemy.avatar;
@@ -868,33 +869,30 @@ function updateBattleHp(){
   document.getElementById('b-pHpText').textContent=`${Math.max(0,Math.round(battleState.pHp))}/${battleState.pMaxHp}`;
   document.getElementById('b-eHpText').textContent=`${Math.max(0,Math.round(battleState.eHp))}/${battleState.eMaxHp}`;
 }
-
 function bLog(msg){ const l=document.getElementById('battleLog'); l.innerHTML+=msg+'<br>'; l.scrollTop=l.scrollHeight; }
 
 function battleAction(type){
   document.getElementById('battleActions').style.display='none';
   const diff = type==='special' ? 'hard' : 'medium';
-  const pool = [...QUESTIONS.basketball,...QUESTIONS.football,...QUESTIONS.soccer].filter(q=>q.diff===diff);
-  battleQ = { q:shuffle(pool)[0], answered:false, timer:null, timeLeft:TIME_LIMITS[diff], action:type, diff };
+  const pool  = QUESTIONS.filter(q => q.diff === diff);
+  const q     = shuffle(pool)[0];
+  battleQ = { q, answered:false, timer:null, timeLeft:TIME_LIMITS[diff], action:type, diff };
 
-  const q=battleQ.q;
-  const sport=detectSport(q);
-  const sportBadgeClass='btv-badge badge-'+sport;
-  const sportLabel={basketball:'🏀 Basketball',football:'🏈 Football',soccer:'⚽ Soccer'}[sport]||'🎯';
+  // Build sport badge for battle using q.sport directly
+  const sportLabel = SPORT_LABELS[q.sport] || '🎯 Sports';
+  const sportClass = 'btv-badge badge-' + q.sport;
 
-  // Build the battle trivia UI with UNIQUE class-based elements (no duplicate IDs)
   const zone=document.getElementById('battleTriviaZone');
   zone.innerHTML=`
     <div class="btv-card">
       <div class="btv-label">${type==='special'?'🌟 SPECIAL MOVE — Hard Question!':'⚡ ATTACK — Answer correctly to deal damage!'}</div>
-      <div class="${sportBadgeClass}">${sportLabel}</div>
+      <span class="${sportClass}">${sportLabel}</span>
       <div class="btv-qtext" id="btv-qtext">${q.q}</div>
       <div class="btv-answers" id="btv-answers"></div>
       <div class="btv-feedback" id="btv-feedback"></div>
       <div class="btv-timer-wrap"><div class="btv-timer-bar" id="btv-timer-bar"></div></div>
     </div>`;
 
-  // Build answer buttons
   const grid=document.getElementById('btv-answers');
   shuffle([0,1,2,3]).forEach(i=>{
     const btn=document.createElement('button');
@@ -903,7 +901,6 @@ function battleAction(type){
     grid.appendChild(btn);
   });
 
-  // Start timer
   updateBattleTimer();
   battleQ.timer=setInterval(()=>{
     battleQ.timeLeft--;
@@ -925,12 +922,7 @@ function pickBattleAnswer(idx,btn){
   battleQ.answered=true;
   clearInterval(battleQ.timer);
   const q=battleQ.q;
-
-  document.querySelectorAll('.btv-ans').forEach(b=>{
-    b.disabled=true;
-    if(b.textContent===q.a[q.correct]) b.classList.add('correct');
-  });
-
+  document.querySelectorAll('.btv-ans').forEach(b=>{ b.disabled=true; if(b.textContent===q.a[q.correct]) b.classList.add('correct'); });
   const fb=document.getElementById('btv-feedback');
   if(idx===q.correct){
     btn.classList.add('correct');
@@ -947,10 +939,7 @@ function battleTimerUp(){
   if(battleQ.answered) return;
   battleQ.answered=true;
   const q=battleQ.q;
-  document.querySelectorAll('.btv-ans').forEach(b=>{
-    b.disabled=true;
-    if(b.textContent===q.a[q.correct]) b.classList.add('correct');
-  });
+  document.querySelectorAll('.btv-ans').forEach(b=>{ b.disabled=true; if(b.textContent===q.a[q.correct]) b.classList.add('correct'); });
   const fb=document.getElementById('btv-feedback');
   if(fb){ fb.textContent=`⏰ Time! Answer: ${q.a[q.correct]}`; fb.className='btv-feedback wrong'; }
   setTimeout(()=>resolveBattle(false),1400);
@@ -997,9 +986,7 @@ function endBattle(){
   renderHub();
 }
 
-// ═══════════════════════════════════
 // INIT
-// ═══════════════════════════════════
 show('introScreen');
 </script>
 </body>
